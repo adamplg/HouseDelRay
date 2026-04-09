@@ -34,6 +34,10 @@ const alternatePath = getAlternatePath(Astro.url.pathname, locale === 'en' ? 'fr
         <span class="hamburger-line"></span>
       </button>
 
+      <a href={alternatePath} class="header__lang-switch text-ui">
+        {t('lang.switchTo')}
+      </a>
+
       <nav class="header__nav" aria-label={locale === 'fr' ? 'Navigation principale' : 'Main navigation'}>
         {navItems.map((item) => (
           <a href={item.href} class="header__nav-link text-ui">
@@ -57,10 +61,6 @@ const alternatePath = getAlternatePath(Astro.url.pathname, locale === 'en' ? 'fr
           </a>
         ))}
       </nav>
-
-      <a href={alternatePath} class="header__lang-switch text-ui">
-        {t('lang.switchTo')}
-      </a>
 
       <a href={siteConfig.bookingUrl} class="header__book-btn text-ui">
         {t('nav.bookNow')}
@@ -173,19 +173,12 @@ const alternatePath = getAlternatePath(Astro.url.pathname, locale === 'en' ? 'fr
 
   /* ── Language Switcher ── */
   .header__lang-switch {
-    display: none;
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-widest);
     text-transform: uppercase;
     text-decoration: none;
     padding-bottom: 2px;
     position: relative;
-  }
-
-  @media (min-width: 1024px) {
-    .header__lang-switch {
-      display: inline-flex;
-    }
   }
 
   .header__lang-switch::after {
