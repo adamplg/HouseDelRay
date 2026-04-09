@@ -23,9 +23,9 @@ const {
 } = Astro.props;
 
 const description = Astro.props.description ?? getSiteDescription(locale);
-const canonicalUrl = new URL(Astro.url.pathname, 'https://houseofdelray.com');
+const canonicalUrl = new URL(Astro.url.pathname, 'https://housedelray.netlify.app');
 const alternatePath = getAlternatePath(Astro.url.pathname, locale === 'en' ? 'fr' : 'en');
-const alternateUrl = new URL(alternatePath, 'https://houseofdelray.com');
+const alternateUrl = new URL(alternatePath, 'https://housedelray.netlify.app');
 ---
 <!DOCTYPE html>
 <html lang={locale === 'fr' ? 'fr' : 'en'}>
@@ -46,7 +46,7 @@ const alternateUrl = new URL(alternatePath, 'https://houseofdelray.com');
     <!-- Open Graph -->
     <meta property="og:title" content={`${title} | House of Delray`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, 'https://houseofdelray.com').toString()} />
+    <meta property="og:image" content={new URL(ogImage, 'https://housedelray.netlify.app').toString()} />
     <meta property="og:url" content={canonicalUrl.toString()} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="House of Delray" />
@@ -56,7 +56,7 @@ const alternateUrl = new URL(alternatePath, 'https://houseofdelray.com');
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | House of Delray`} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(ogImage, 'https://houseofdelray.com').toString()} />
+    <meta name="twitter:image" content={new URL(ogImage, 'https://housedelray.netlify.app').toString()} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
