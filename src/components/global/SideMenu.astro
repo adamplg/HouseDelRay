@@ -1,7 +1,7 @@
 ---
 import { getSideMenuNav } from '@/data/navigation';
 import { siteConfig, getSiteDescription } from '@/data/siteConfig';
-import { useTranslations, type Locale } from '@/i18n/utils';
+import { useTranslations, getAlternatePath, type Locale } from '@/i18n/utils';
 
 interface Props {
   locale?: Locale;
@@ -11,6 +11,7 @@ const { locale = 'en' } = Astro.props;
 const t = useTranslations(locale);
 const nav = getSideMenuNav(locale);
 const description = getSiteDescription(locale);
+const alternatePath = getAlternatePath(Astro.url.pathname, locale === 'en' ? 'fr' : 'en');
 ---
 <div class="side-menu" data-side-menu aria-hidden="true">
   <!-- Backdrop -->
@@ -49,6 +50,12 @@ const description = getSiteDescription(locale);
             )}
           </div>
         ))}
+      </div>
+
+      <div class="side-menu__lang">
+        <a href={alternatePath} class="side-menu__lang-link text-ui">
+          {t('lang.switchTo')}
+        </a>
       </div>
 
       <div class="side-menu__intro">
@@ -177,6 +184,30 @@ const description = getSiteDescription(locale);
 
   .side-menu__sub-link:hover {
     color: var(--color-forest);
+  }
+
+  /* ── Language Switcher ── */
+  .side-menu__lang {
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(44, 41, 38, 0.12);
+  }
+
+  .side-menu__lang-link {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-charcoal);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  .side-menu__lang-link:hover {
+    color: var(--color-forest);
+  }
+
+  @media (min-width: 1024px) {
+    .side-menu__lang {
+      display: none;
+    }
   }
 
   /* ── Intro Text ── */

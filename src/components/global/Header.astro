@@ -173,12 +173,19 @@ const alternatePath = getAlternatePath(Astro.url.pathname, locale === 'en' ? 'fr
 
   /* ── Language Switcher ── */
   .header__lang-switch {
+    display: none;
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-widest);
     text-transform: uppercase;
     text-decoration: none;
     padding-bottom: 2px;
     position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    .header__lang-switch {
+      display: inline-flex;
+    }
   }
 
   .header__lang-switch::after {
