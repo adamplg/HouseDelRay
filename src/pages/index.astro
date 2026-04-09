@@ -86,15 +86,15 @@ import { siteConfig } from '@/data/siteConfig';
   <section class="stay-with-us">
     <Container width="full">
       <div class="stay-with-us__grid">
-        <div class="stay-with-us__image img-hover-zoom">
+        <a href="/sleep" class="stay-with-us__image img-hover-zoom">
           <img src="/images/room-bathroom.png" alt="Stay with us" loading="lazy" />
           <div class="stay-with-us__overlay">
             <h2 class="stay-with-us__title text-hero">Stay With Us</h2>
           </div>
-        </div>
-        <div class="stay-with-us__image img-hover-zoom">
+        </a>
+        <a href="/sleep" class="stay-with-us__image img-hover-zoom">
           <img src="/images/room-bedroom.png" alt="Bedroom at House of Delray" loading="lazy" />
-        </div>
+        </a>
       </div>
     </Container>
   </section>
@@ -104,7 +104,7 @@ import { siteConfig } from '@/data/siteConfig';
     <Container>
       <SectionHeading>Eat & Drink</SectionHeading>
       <div class="eat-drink__cards">
-        <div class="eat-drink__card">
+        <a href="/eat-and-drink" class="eat-drink__card">
           <div class="eat-drink__card-image img-hover-zoom">
             <img src="/images/dining-courtyard.png" alt="The Restaurant" loading="lazy" />
           </div>
@@ -113,11 +113,9 @@ import { siteConfig } from '@/data/siteConfig';
             Set on the ground floor and opening into a lush courtyard, the Delray Restaurant
             serves modern Mediterranean cuisine with Israeli influences.
           </p>
-          <Button href="/eat-and-drink" variant="ghost" size="sm">
-            Read More
-          </Button>
-        </div>
-        <div class="eat-drink__card">
+          <span class="eat-drink__card-link text-ui">Read More</span>
+        </a>
+        <a href="/the-rooftop" class="eat-drink__card">
           <div class="eat-drink__card-image img-hover-zoom">
             <img src="/images/rooftop-terrace.png" alt="The Rooftop" loading="lazy" />
           </div>
@@ -126,11 +124,9 @@ import { siteConfig } from '@/data/siteConfig';
             A relaxed yet elevated space with sweeping skyline views. The House of Delray
             rooftop is open to both hotel guests and locals.
           </p>
-          <Button href="/the-rooftop" variant="ghost" size="sm">
-            Read More
-          </Button>
-        </div>
-        <div class="eat-drink__card">
+          <span class="eat-drink__card-link text-ui">Read More</span>
+        </a>
+        <a href="/speakeasy" class="eat-drink__card">
           <div class="eat-drink__card-image img-hover-zoom">
             <img src="/images/speakeasy-bar.png" alt="Speakeasy" loading="lazy" />
           </div>
@@ -139,10 +135,8 @@ import { siteConfig } from '@/data/siteConfig';
             A hidden speakeasy-style space beneath the villa, open by invitation only.
             Designed for Tel Aviv's creative community.
           </p>
-          <Button href="/speakeasy" variant="ghost" size="sm">
-            Read More
-          </Button>
-        </div>
+          <span class="eat-drink__card-link text-ui">Read More</span>
+        </a>
       </div>
     </Container>
   </section>
@@ -398,6 +392,8 @@ import { siteConfig } from '@/data/siteConfig';
 
   .stay-with-us__image {
     position: relative;
+    text-decoration: none;
+    display: block;
   }
 
   .stay-with-us__image img {
@@ -455,6 +451,8 @@ import { siteConfig } from '@/data/siteConfig';
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    text-decoration: none;
+    color: inherit;
   }
 
   .eat-drink__card-image img {
@@ -479,7 +477,10 @@ import { siteConfig } from '@/data/siteConfig';
     flex: 1;
   }
 
-  .eat-drink :global(.btn--ghost) {
+  .eat-drink__card-link {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
     color: var(--color-cream);
   }
 

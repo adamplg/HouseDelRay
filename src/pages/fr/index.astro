@@ -87,15 +87,15 @@ import { siteConfig } from '@/data/siteConfig';
   <section class="stay-with-us">
     <Container width="full">
       <div class="stay-with-us__grid">
-        <div class="stay-with-us__image img-hover-zoom">
+        <a href="/fr/dormir" class="stay-with-us__image img-hover-zoom">
           <img src="/images/room-bathroom.png" alt="Séjourner chez nous" loading="lazy" />
           <div class="stay-with-us__overlay">
             <h2 class="stay-with-us__title text-hero">Séjourner</h2>
           </div>
-        </div>
-        <div class="stay-with-us__image img-hover-zoom">
+        </a>
+        <a href="/fr/dormir" class="stay-with-us__image img-hover-zoom">
           <img src="/images/room-bedroom.png" alt="Chambre du House of Delray" loading="lazy" />
-        </div>
+        </a>
       </div>
     </Container>
   </section>
@@ -105,7 +105,7 @@ import { siteConfig } from '@/data/siteConfig';
     <Container>
       <SectionHeading>Manger & Boire</SectionHeading>
       <div class="eat-drink__cards">
-        <div class="eat-drink__card">
+        <a href="/fr/manger-et-boire" class="eat-drink__card">
           <div class="eat-drink__card-image img-hover-zoom">
             <img src="/images/dining-courtyard.png" alt="Le Restaurant" loading="lazy" />
           </div>
@@ -114,11 +114,9 @@ import { siteConfig } from '@/data/siteConfig';
             Installé au rez-de-chaussée et ouvert sur un patio luxuriant, le Restaurant
             Delray propose une cuisine méditerranéenne moderne aux accents israéliens.
           </p>
-          <Button href="/fr/manger-et-boire" variant="ghost" size="sm">
-            En Savoir Plus
-          </Button>
-        </div>
-        <div class="eat-drink__card">
+          <span class="eat-drink__card-link text-ui">En Savoir Plus</span>
+        </a>
+        <a href="/fr/le-rooftop" class="eat-drink__card">
           <div class="eat-drink__card-image img-hover-zoom">
             <img src="/images/rooftop-terrace.png" alt="Le Rooftop" loading="lazy" />
           </div>
@@ -127,11 +125,9 @@ import { siteConfig } from '@/data/siteConfig';
             Un espace décontracté et raffiné avec une vue panoramique sur la ville. Le rooftop
             du House of Delray est ouvert aux résidents comme aux habitants du quartier.
           </p>
-          <Button href="/fr/le-rooftop" variant="ghost" size="sm">
-            En Savoir Plus
-          </Button>
-        </div>
-        <div class="eat-drink__card">
+          <span class="eat-drink__card-link text-ui">En Savoir Plus</span>
+        </a>
+        <a href="/fr/speakeasy" class="eat-drink__card">
           <div class="eat-drink__card-image img-hover-zoom">
             <img src="/images/speakeasy-bar.png" alt="Speakeasy" loading="lazy" />
           </div>
@@ -140,10 +136,8 @@ import { siteConfig } from '@/data/siteConfig';
             Un espace secret niché sous la villa, accessible sur invitation uniquement.
             Pensé pour la communauté créative de Tel Aviv.
           </p>
-          <Button href="/fr/speakeasy" variant="ghost" size="sm">
-            En Savoir Plus
-          </Button>
-        </div>
+          <span class="eat-drink__card-link text-ui">En Savoir Plus</span>
+        </a>
       </div>
     </Container>
   </section>
@@ -400,6 +394,8 @@ import { siteConfig } from '@/data/siteConfig';
 
   .stay-with-us__image {
     position: relative;
+    text-decoration: none;
+    display: block;
   }
 
   .stay-with-us__image img {
@@ -457,6 +453,8 @@ import { siteConfig } from '@/data/siteConfig';
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    text-decoration: none;
+    color: inherit;
   }
 
   .eat-drink__card-image img {
@@ -481,7 +479,10 @@ import { siteConfig } from '@/data/siteConfig';
     flex: 1;
   }
 
-  .eat-drink :global(.btn--ghost) {
+  .eat-drink__card-link {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
     color: var(--color-cream);
   }
 
