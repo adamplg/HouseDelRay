@@ -39,7 +39,9 @@ const bgStyle = backgroundImage
           muted
           loop
           playsinline
+          webkit-playsinline
           preload="auto"
+          data-hero-video
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
@@ -172,3 +174,16 @@ const bgStyle = backgroundImage
     }
   }
 </style>
+
+<script>
+  function initHeroVideos() {
+    document.querySelectorAll<HTMLVideoElement>('[data-hero-video]').forEach((video) => {
+      video.muted = true;
+      video.playsInline = true;
+      video.play().catch(() => {});
+    });
+  }
+
+  initHeroVideos();
+  document.addEventListener('astro:after-swap', initHeroVideos);
+</script>
