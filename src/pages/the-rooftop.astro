@@ -1,0 +1,134 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import MenuLinkLines from '@/components/blocks/MenuLinkLines.astro';
+import OpeningHours from '@/components/blocks/OpeningHours.astro';
+import EventCard from '@/components/blocks/EventCard.astro';
+import { rooftopHours, restaurantContact } from '@/data/openingHours';
+---
+<PageLayout title="The Rooftop" headerMode="transparent">
+  <PageHero title="The Rooftop" height="tall" backgroundImage="/images/rooftop-dinner.png" />
+
+  <!-- Description -->
+  <section class="rooftop-desc">
+    <Container width="narrow">
+      <p class="rooftop-desc__text text-center">
+        A relaxed yet elevated space with sweeping skyline views. The House of Delray
+        rooftop is open to both hotel guests and locals for sunset cocktails, natural wines,
+        and shareable plates. Perfect for aperitivo hour, weekend brunch, and private
+        events for up to 49 guests. After dark, expect DJs and casual late-night gatherings
+        under the stars.
+      </p>
+      <div class="rooftop-desc__cta text-center">
+        <Button href="#reserve" variant="secondary" size="md">
+          Book Private Event
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Rooftop Image -->
+  <section class="rooftop-image">
+    <img src="/images/rooftop-dinner.png" alt="Rooftop dining at House of Delray" loading="lazy" />
+  </section>
+
+  <!-- Events -->
+  <section class="rooftop-events">
+    <Container>
+      <h2 class="text-section-title">September Events</h2>
+      <div class="rooftop-events__grid">
+        <EventCard
+          title="Sunset DJ Set"
+          description="Close out a daydream night. Spiral desert Young Master Tel Aviv's Tower House."
+          date="SAT, 9/3, 18:00-00:00"
+          layout="vertical"
+        />
+        <EventCard
+          title="Vinyl Therapy #4"
+          description="Close out the the rounds of sweet sounds and recondite acid harmonics. No filter, Groundfloor, Young."
+          date="SAT, 11/4, 18:00-00:00"
+          layout="vertical"
+        />
+        <EventCard
+          title="Valentine Special"
+          description="Close out the the rounds of sweet sounds and recondite and beautiful wine, Anti-Bar DJs and Roast Point."
+          date="SAT, 12/4, 18:00-00:00"
+          layout="vertical"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Menu Links -->
+  <section class="rooftop-menus">
+    <Container>
+      <MenuLinkLines menus={[
+        { title: 'Breakfast & Brunch', link: '#menu' },
+        { title: 'Aperitivo', link: '#menu' },
+      ]} />
+    </Container>
+  </section>
+
+  <!-- Opening Hours -->
+  <section class="rooftop-hours">
+    <Container>
+      <OpeningHours
+        hours={rooftopHours}
+        title="Opening Hours"
+        email={restaurantContact.email}
+        phone={restaurantContact.phone}
+        address={restaurantContact.address}
+        city={restaurantContact.city}
+      />
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .rooftop-desc {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .rooftop-desc__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .rooftop-image img {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+  }
+
+  .rooftop-events {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .rooftop-events__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .rooftop-events__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .rooftop-menus {
+    padding: 0 0 var(--space-xl);
+  }
+
+  .rooftop-hours {
+    padding: 0 0 var(--section-padding-y);
+  }
+</style>

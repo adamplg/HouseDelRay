@@ -1,0 +1,220 @@
+---
+import { useTranslations, type Locale } from '@/i18n/utils';
+
+interface Props {
+  title?: string;
+  formName?: string;
+  locale?: Locale;
+}
+
+const { title, formName = 'contact', locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const resolvedFormName = locale === 'fr' ? `${formName}-fr` : formName;
+---
+<div class="contact-form">
+  {title && <h3 class="contact-form__title">{title}</h3>}
+
+  <form class="contact-form__form" data-netlify="true" name={resolvedFormName} method="POST" data-contact-form data-success-message={t('form.success')}>
+    <div class="contact-form__row">
+      <div class="contact-form__field">
+        <input
+          type="text"
+          name="firstName"
+          placeholder={t('form.firstName')}
+          required
+          aria-required="true"
+          class="contact-form__input"
+        />
+      </div>
+      <div class="contact-form__field">
+        <input
+          type="text"
+          name="lastName"
+          placeholder={t('form.lastName')}
+          required
+          aria-required="true"
+          class="contact-form__input"
+        />
+      </div>
+    </div>
+
+    <div class="contact-form__field">
+      <input
+        type="email"
+        name="email"
+        placeholder={t('form.email')}
+        required
+        aria-required="true"
+        class="contact-form__input"
+      />
+    </div>
+
+    <div class="contact-form__field">
+      <input
+        type="tel"
+        name="phone"
+        placeholder={t('form.phone')}
+        class="contact-form__input"
+      />
+    </div>
+
+    {formName === 'contact' && (
+      <div class="contact-form__field">
+        <textarea
+          name="message"
+          placeholder={t('form.message')}
+          rows={5}
+          class="contact-form__input contact-form__textarea"
+        ></textarea>
+      </div>
+    )}
+
+    <button type="submit" class="contact-form__submit text-ui">
+      {t('form.submit')}
+    </button>
+
+    <div class="contact-form__status" data-form-status aria-live="polite"></div>
+  </form>
+</div>
+
+<style>
+  .contact-form__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-xl);
+    color: var(--color-white);
+  }
+
+  .contact-form__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .contact-form__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 640px) {
+    .contact-form__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .contact-form__input {
+    width: 100%;
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    outline: none;
+    transition: border-color var(--duration-fast) var(--ease-default);
+  }
+
+  .contact-form__input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .contact-form__input:focus {
+    border-bottom-color: var(--color-white);
+  }
+
+  .contact-form__input:invalid:not(:placeholder-shown) {
+    border-bottom-color: var(--color-magenta);
+  }
+
+  .contact-form__textarea {
+    resize: vertical;
+    min-height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem;
+    margin-top: var(--space-sm);
+  }
+
+  .contact-form__textarea:focus {
+    border-color: var(--color-white);
+  }
+
+  .contact-form__submit {
+    align-self: flex-start;
+    margin-top: var(--space-md);
+    padding: 0.65rem 2rem;
+    background-color: transparent;
+    color: var(--color-white);
+    border: 1px solid var(--color-white);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) var(--ease-default),
+      color var(--duration-fast) var(--ease-default);
+  }
+
+  .contact-form__submit:hover {
+    background-color: var(--color-white);
+    color: var(--color-charcoal);
+  }
+
+  .contact-form__status {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    min-height: 1.5em;
+  }
+
+  /* ── Light background variant ── */
+  :global(.contact-form--light) .contact-form__input {
+    color: var(--color-charcoal);
+    border-bottom-color: var(--color-mauve-200);
+  }
+
+  :global(.contact-form--light) .contact-form__input::placeholder {
+    color: var(--color-warm-gray);
+  }
+
+  :global(.contact-form--light) .contact-form__input:focus {
+    border-bottom-color: var(--color-charcoal);
+  }
+
+  :global(.contact-form--light) .contact-form__textarea {
+    border-color: var(--color-mauve-200);
+  }
+
+  :global(.contact-form--light) .contact-form__submit {
+    color: var(--color-charcoal);
+    border-color: var(--color-charcoal);
+  }
+
+  :global(.contact-form--light) .contact-form__submit:hover {
+    background-color: var(--color-charcoal);
+    color: var(--color-cream);
+  }
+</style>
+
+<script>
+  function initContactForms() {
+    document.querySelectorAll('[data-contact-form]').forEach((form) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const status = form.querySelector('[data-form-status]') as HTMLElement;
+        const message = (form as HTMLElement).dataset.successMessage || 'Thank you!';
+        if (status) {
+          status.textContent = message;
+          status.style.color = '#4E7A5C';
+        }
+        (form as HTMLFormElement).reset();
+      });
+    });
+  }
+
+  initContactForms();
+  document.addEventListener('astro:after-swap', initContactForms);
+</script>

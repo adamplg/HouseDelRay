@@ -1,0 +1,219 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import OpeningHours from '@/components/blocks/OpeningHours.astro';
+import MenuLinkLines from '@/components/blocks/MenuLinkLines.astro';
+import FullWidthImageText from '@/components/blocks/FullWidthImageText.astro';
+import { restaurantHours, restaurantContact } from '@/data/openingHours';
+---
+<PageLayout title="Eat & Drink" headerMode="transparent">
+  <PageHero title="Eat & Drink" height="tall" backgroundImage="/images/food-burrata.png" class="hero--blur" />
+
+  <!-- Restaurant Description -->
+  <section class="restaurant-desc">
+    <Container width="narrow">
+      <p class="restaurant-desc__text text-center">
+        Set on the ground floor and opening into a lush courtyard, the Delray Restaurant
+        serves modern Mediterranean cuisine with Israeli influences. Guests can enjoy slow
+        breakfasts, vibrant lunches, and lively dinners in a setting that transitions from
+        daylight to candlelight. Combining the two areas, this space seats up to 80 guests.
+      </p>
+      <div class="restaurant-desc__cta text-center">
+        <Button href="#reserve" variant="secondary" size="md">
+          Reserve a Table
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Opening Hours -->
+  <section class="hours-section">
+    <Container>
+      <OpeningHours
+        hours={restaurantHours}
+        email={restaurantContact.email}
+        phone={restaurantContact.phone}
+        address={restaurantContact.address}
+        city={restaurantContact.city}
+      />
+    </Container>
+  </section>
+
+  <!-- Menu Links -->
+  <section class="menus-section">
+    <Container>
+      <MenuLinkLines menus={[
+        { title: 'Breakfast & Brunch', link: '#menu' },
+        { title: 'Aperitivo', link: '#menu', linkText: 'View Menu' },
+        { title: 'Dinner', link: '#menu' },
+      ]} />
+    </Container>
+  </section>
+
+  <!-- The Rooftop Teaser -->
+  <section class="rooftop-teaser">
+    <Container>
+      <div class="rooftop-teaser__grid">
+        <div class="rooftop-teaser__text">
+          <h2 class="rooftop-teaser__title text-section-title">The Rooftop</h2>
+          <p>
+            A relaxed yet elevated space with sweeping skyline views. The
+            House of Delray rooftop is open to both hotel guests and locals for
+            sunset cocktails, natural wines, and shareable plates. Perfect for
+            aperitivo hour, weekend brunch, and private events for up to 40
+            guests. After dark, expect DJs and casual late-night gatherings
+            under the stars.
+          </p>
+          <Button href="/the-rooftop" variant="secondary" size="md">
+            Go to Rooftop
+          </Button>
+        </div>
+        <div class="rooftop-teaser__image img-hover-zoom">
+          <img src="/images/rooftop-dinner.png" alt="The Rooftop" loading="lazy" />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Speakeasy Teaser -->
+  <section class="speakeasy-teaser">
+    <div class="speakeasy-teaser__bg">
+      <Container>
+        <div class="speakeasy-teaser__grid">
+          <div class="speakeasy-teaser__image img-hover-zoom">
+            <img src="/images/speakeasy-bar.png" alt="The Speakeasy" loading="lazy" />
+          </div>
+          <div class="speakeasy-teaser__content">
+            <h2 class="speakeasy-teaser__title text-section-title">Speakeasy</h2>
+            <p>
+              A hidden speakeasy-style space beneath the villa, open by
+              invitation only. Designed for Tel Aviv's creative community, it
+              features handcrafted cocktails, live music, and curated
+              programming. Ideal for private events and gatherings of up
+              to 70 guests.
+            </p>
+            <Button href="/speakeasy" variant="secondary" size="md">
+              Find Out More
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  :global(.hero--blur::before) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+  .restaurant-desc {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .restaurant-desc__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hours-section {
+    padding: 0 0 var(--space-xl);
+  }
+
+  .menus-section {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .rooftop-teaser {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .rooftop-teaser__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .rooftop-teaser__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+  }
+
+  .rooftop-teaser__title {
+    margin-bottom: var(--space-lg);
+  }
+
+  .rooftop-teaser__text p {
+    margin-bottom: var(--space-xl);
+    line-height: var(--leading-relaxed);
+  }
+
+  .rooftop-teaser__image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .speakeasy-teaser__bg {
+    background-color: #000;
+    padding: var(--space-4xl) 0;
+    color: var(--color-cream);
+  }
+
+  .speakeasy-teaser__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .speakeasy-teaser__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+  }
+
+  .speakeasy-teaser__image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .speakeasy-teaser__title {
+    color: var(--color-cream);
+    margin-bottom: var(--space-lg);
+  }
+
+  .speakeasy-teaser__content p {
+    color: rgba(250, 248, 245, 0.85);
+    margin-bottom: var(--space-xl);
+    line-height: var(--leading-relaxed);
+  }
+
+  .speakeasy-teaser__content :global(.btn--secondary) {
+    color: var(--color-cream);
+    border-color: var(--color-cream);
+  }
+
+  .speakeasy-teaser__content :global(.btn--secondary:hover) {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+  }
+</style>

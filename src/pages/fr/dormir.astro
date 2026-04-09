@@ -1,0 +1,121 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import ThumbnailGrid from '@/components/blocks/ThumbnailGrid.astro';
+import Accordion from '@/components/blocks/Accordion.astro';
+import FullWidthImageText from '@/components/blocks/FullWidthImageText.astro';
+---
+<PageLayout title="Chambres & Suites" headerMode="transparent" locale="fr">
+  <PageHero title="Chambres & Suites" height="tall" backgroundImage="/images/breakfast-bed.png" />
+
+  <!-- Room Intro -->
+  <section class="room-intro">
+    <Container width="narrow">
+      <p class="room-intro__text text-center">
+        Tout est pensé pour que vos nuits soient à la hauteur de vos journées :
+        matelas de qualité supérieure, rideaux occultants pour un sommeil profond,
+        et vos propres accessoires de salle de bain soigneusement sélectionnés.
+        Réveillez-vous ressourcé et prêt à savourer chaque instant de ce que
+        Tel Aviv a de meilleur à offrir — du lever au coucher du soleil.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Rooms Grid -->
+  <section class="rooms">
+    <Container>
+      <ThumbnailGrid
+        locale="fr"
+        items={[
+          {
+            title: 'Kerem Petite',
+            subtitle: '20 m² / Balcon',
+            description: 'La plus intime de nos chambres Kerem HaTeimanim. Avec sa baignoire intégrée, elle est idéale pour se ressourcer après une journée d\'exploration en ville.',
+            ctaText: 'Découvrir',
+            link: '/fr/dormir',
+          },
+          {
+            title: 'Casual Core',
+            subtitle: '25 m² / Patio',
+            description: 'La chambre parfaite pour une escapade décontractée à Tel Aviv. Baignée de lumière naturelle, avec un coin lecture chaleureux et tout le nécessaire pour se ressourcer.',
+            ctaText: 'Découvrir',
+            link: '/fr/dormir',
+          },
+          {
+            title: 'La Suite Delray Loft',
+            subtitle: '40 m² / Espace Loft',
+            description: 'Notre suite signature au style loft, cet espace généreux est conçu pour l\'art de vivre. Le refuge idéal pour les esprits exigeants en quête de raffinement.',
+            ctaText: 'Découvrir',
+            link: '/fr/dormir',
+          },
+        ]}
+        columns={2}
+      />
+    </Container>
+  </section>
+
+  <!-- What's Included Accordion -->
+  <section class="whats-included">
+    <Container>
+      <Accordion
+        items={[
+          { title: "Qu'est-ce qui est inclus ?", content: "Toutes les chambres comprennent du linge de lit de luxe, des rideaux occultants, une douche à l'italienne effet pluie, des produits de toilette haut de gamme, le Wi-Fi haut débit, une Smart TV, une machine Nespresso, un minibar, le ménage quotidien et un service de conciergerie disponible 24h/24." },
+          { title: "Les équipements du House of Delray", content: "Nos hôtes profitent d'un accès à la terrasse sur le toit, au restaurant et au bar, d'un petit-déjeuner offert, de la location de vélos, d'accessoires de plage et de notre guide d'expériences locales soigneusement sélectionnées." },
+        ]}
+      />
+    </Container>
+  </section>
+
+  <!-- Privatisez la Maison Entière -->
+  <FullWidthImageText
+    title="Privatisez la Maison Entière"
+    text="Bien plus qu'un séjour, c'est votre invitation privée dans l'univers du Delray : intime, immersif et impeccablement orchestré. Chaque détail est pensé pour des célébrations vibrantes, une élégance naturelle et des plaisirs inoubliables."
+    ctaText="En Savoir Plus"
+    ctaLink="/fr/privatisation"
+  />
+
+  <!-- Packages -->
+  <section class="packages-section">
+    <Container>
+      <ThumbnailGrid
+        locale="fr"
+        items={[
+          { title: 'L\'Essentiel', subtitle: 'À partir de...', description: 'La beauté simple dans le plus pur style Delray. Nos chambres les plus épurées, naturellement élégantes, comprennent le petit-déjeuner, le ménage quotidien et des produits de bain artisanaux dans un écrin plein de caractère.', ctaText: 'En Savoir Plus', link: '/fr/privatisation' },
+          { title: 'Le Raffiné', subtitle: 'Un cran au-dessus...', description: 'Un chez-soi loin de chez soi, au-delà de l\'ordinaire. Vivez comme les Telaviviens avec un accès au rooftop, notre guide insider de Tel Aviv et des attentions exclusives — art, culture et personnalité.', ctaText: 'En Savoir Plus', link: '/fr/privatisation' },
+          { title: 'Le Signature', subtitle: 'Immersion totale', description: 'La culture à pleins poumons. Ce séjour est une plongée curatoriale dans le Tel Aviv de l\'art, de la photographie, de l\'innovation et des moments hors des sentiers battus — des exclusivités à redécouvrir.', ctaText: 'En Savoir Plus', link: '/fr/privatisation' },
+          { title: 'L\'Intégrale', subtitle: 'Sans compromis', description: 'L\'immersion absolue dans Tel Aviv, à notre façon, et toujours fait main. Comme tous les forfaits Delray. Le petit-déjeuner n\'est que le début d\'un accès total à un monde d\'aventures exclusives.', ctaText: 'En Savoir Plus', link: '/fr/privatisation' },
+        ]}
+        columns={2}
+      />
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .room-intro {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .room-intro__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  .rooms {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .whats-included {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .packages-section {
+    padding: var(--section-padding-y) 0;
+  }
+</style>

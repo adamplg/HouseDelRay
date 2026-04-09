@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/global/Header.astro';
+import SideMenu from '@/components/global/SideMenu.astro';
+import NewsletterSignup from '@/components/global/NewsletterSignup.astro';
+import Footer from '@/components/global/Footer.astro';
+import type { Locale } from '@/i18n/utils';
+import '@/styles/speakeasy.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  locale?: Locale;
+}
+
+const { title, description, ogImage, locale = 'en' } = Astro.props;
+---
+<BaseLayout title={title} description={description} ogImage={ogImage} bodyClass="theme-speakeasy" locale={locale}>
+  <Header mode="dark" locale={locale} />
+  <SideMenu locale={locale} />
+  <main id="main-content">
+    <slot />
+  </main>
+  <NewsletterSignup variant="dark" locale={locale} />
+  <Footer locale={locale} />
+</BaseLayout>

@@ -1,0 +1,575 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import { siteConfig } from '@/data/siteConfig';
+---
+<PageLayout title="Meet Me at Delray" headerMode="transparent">
+  <!-- Hero -->
+  <PageHero
+    title="Meet Me at<br>Delray"
+    height="full"
+    videoSrc="/video/hero.mp4"
+  >
+    <!-- Booking Bar -->
+    <form class="booking-bar" action={siteConfig.bookingUrl} method="get" slot="bottom">
+      <div class="booking-bar__field">
+        <label class="booking-bar__label" for="checkin">Check In</label>
+        <input type="date" id="checkin" name="checkin" class="booking-bar__input" />
+      </div>
+      <div class="booking-bar__field">
+        <label class="booking-bar__label" for="checkout">Check Out</label>
+        <input type="date" id="checkout" name="checkout" class="booking-bar__input" />
+      </div>
+      <div class="booking-bar__field">
+        <label class="booking-bar__label" for="guests">Guests</label>
+        <select id="guests" name="guests" class="booking-bar__input">
+          <option>1</option>
+          <option selected>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+      </div>
+      <button type="submit" class="booking-bar__submit text-ui">Check Availability</button>
+    </form>
+  </PageHero>
+
+  <!-- Intro Text -->
+  <section class="intro">
+    <Container width="narrow">
+      <p class="intro__text text-center">
+        House of Delray is designed to be more than just a place to stay —
+        It's a cultural hub, a creative platform, and a space that celebrates
+        Tel Aviv's electric rhythm.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Our House Section -->
+  <section class="our-house">
+    <Container>
+      <h2 class="our-house__heading text-section-title">Our House</h2>
+      <div class="our-house__grid">
+        <div class="our-house__text">
+          <p>
+            Nestled in the heart of Tel Aviv's Kerem HaTeimanim, House of Delray is a carefully
+            crafted eight-room urban villa. More than a place to stay, it's a world where old-school
+            charm meets creative energy — a tapestry of eclectic design, vibrant gatherings, and
+            effortless hospitality that captures Tel Aviv's unique spirit.
+          </p>
+          <Button href="/our-house" variant="secondary" size="md">
+            Stay With Us
+          </Button>
+        </div>
+        <div class="our-house__image our-house__image--main img-hover-zoom">
+          <img src="/images/speakeasy-bar.png" alt="House of Delray bar" loading="lazy" />
+        </div>
+        <div class="our-house__image img-hover-zoom">
+          <img src="/images/room-bathtub.png" alt="Copper bathtub with rooftop view" loading="lazy" />
+        </div>
+        <div class="our-house__image img-hover-zoom">
+          <img src="/images/lounge.png" alt="House of Delray lounge" loading="lazy" />
+        </div>
+      </div>
+      <p class="our-house__desc text-center">
+        House of Delray is more than a bed for the night — it's a lifestyle
+        address. Anchored by three dynamic social spaces — a rooftop terrace, a
+        garden restaurant, and a speakeasy-style members club — it's designed
+        for connection, creativity, and the pure pleasures of city living.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Stay With Us -->
+  <section class="stay-with-us">
+    <Container width="full">
+      <div class="stay-with-us__grid">
+        <div class="stay-with-us__image img-hover-zoom">
+          <img src="/images/room-bathroom.png" alt="Stay with us" loading="lazy" />
+          <div class="stay-with-us__overlay">
+            <h2 class="stay-with-us__title text-hero">Stay With Us</h2>
+          </div>
+        </div>
+        <div class="stay-with-us__image img-hover-zoom">
+          <img src="/images/room-bedroom.png" alt="Bedroom at House of Delray" loading="lazy" />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Eat & Drink -->
+  <section class="eat-drink">
+    <Container>
+      <SectionHeading>Eat & Drink</SectionHeading>
+      <div class="eat-drink__cards">
+        <div class="eat-drink__card">
+          <div class="eat-drink__card-image img-hover-zoom">
+            <img src="/images/dining-courtyard.png" alt="The Restaurant" loading="lazy" />
+          </div>
+          <h3 class="eat-drink__card-title">The Restaurant</h3>
+          <p class="eat-drink__card-desc">
+            Set on the ground floor and opening into a lush courtyard, the Delray Restaurant
+            serves modern Mediterranean cuisine with Israeli influences.
+          </p>
+          <Button href="/eat-and-drink" variant="ghost" size="sm">
+            Read More
+          </Button>
+        </div>
+        <div class="eat-drink__card">
+          <div class="eat-drink__card-image img-hover-zoom">
+            <img src="/images/rooftop-terrace.png" alt="The Rooftop" loading="lazy" />
+          </div>
+          <h3 class="eat-drink__card-title">The Rooftop</h3>
+          <p class="eat-drink__card-desc">
+            A relaxed yet elevated space with sweeping skyline views. The House of Delray
+            rooftop is open to both hotel guests and locals.
+          </p>
+          <Button href="/the-rooftop" variant="ghost" size="sm">
+            Read More
+          </Button>
+        </div>
+        <div class="eat-drink__card">
+          <div class="eat-drink__card-image img-hover-zoom">
+            <img src="/images/speakeasy-bar.png" alt="Speakeasy" loading="lazy" />
+          </div>
+          <h3 class="eat-drink__card-title">Speakeasy</h3>
+          <p class="eat-drink__card-desc">
+            A hidden speakeasy-style space beneath the villa, open by invitation only.
+            Designed for Tel Aviv's creative community.
+          </p>
+          <Button href="/speakeasy" variant="ghost" size="sm">
+            Read More
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Full House -->
+  <section class="full-house">
+    <div class="full-house__bg">
+      <Container width="narrow">
+        <h2 class="full-house__title text-section-title text-center">Full House</h2>
+        <p class="full-house__text text-center">
+          More than a stay — this is your private invitation into the world of
+          Delray. Intimate, immersive, and impeccably curated. Every detail is
+          designed for vibrant celebrations, effortless, and unforgettable pleasure.
+        </p>
+        <div class="full-house__cta text-center">
+          <Button href="/private-buyout" variant="secondary" size="md">
+            Get Details
+          </Button>
+        </div>
+      </Container>
+    </div>
+  </section>
+
+  <!-- Packages Grid -->
+  <section class="packages">
+    <Container>
+      <div class="packages__grid">
+        <a href="/private-buyout" class="packages__item img-hover-zoom">
+          <img src="/images/breakfast-bed.png" alt="The Essential Escape" loading="lazy" />
+          <div class="packages__item-info">
+            <h3 class="packages__item-title">The Essential Escape</h3>
+            <span class="packages__item-cta text-ui">Get Details →</span>
+          </div>
+        </a>
+        <a href="/private-buyout" class="packages__item img-hover-zoom">
+          <img src="/images/room-bedroom.png" alt="The Elevated Welcome" loading="lazy" />
+          <div class="packages__item-info">
+            <h3 class="packages__item-title">The Elevated Welcome</h3>
+            <span class="packages__item-cta text-ui">Get Details →</span>
+          </div>
+        </a>
+        <a href="/private-buyout" class="packages__item img-hover-zoom">
+          <img src="/images/rooftop-dinner.png" alt="The Signature Experience" loading="lazy" />
+          <div class="packages__item-info">
+            <h3 class="packages__item-title">The Signature Experience</h3>
+            <span class="packages__item-cta text-ui">Get Details →</span>
+          </div>
+        </a>
+        <a href="/private-buyout" class="packages__item img-hover-zoom">
+          <img src="/images/courtyard-evening.png" alt="The Full Monty" loading="lazy" />
+          <div class="packages__item-info">
+            <h3 class="packages__item-title">The Full Monty</h3>
+            <span class="packages__item-cta text-ui">Get Details →</span>
+          </div>
+        </a>
+      </div>
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  /* ── Booking Bar ── */
+  .booking-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: stretch;
+    background-color: var(--color-forest);
+  }
+
+  .booking-bar__field {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .booking-bar__label {
+    font-family: var(--font-ui);
+    font-size: 0.625rem;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .booking-bar__input {
+    background: transparent;
+    border: none;
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .booking-bar__input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  .booking-bar__input option {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+  }
+
+  .booking-bar__submit {
+    padding: var(--space-md) var(--space-2xl);
+    background-color: var(--color-charcoal);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    transition: background-color var(--duration-fast) var(--ease-default);
+  }
+
+  .booking-bar__submit:hover {
+    background-color: var(--color-night);
+  }
+
+  @media (max-width: 767px) {
+    .booking-bar {
+      flex-wrap: wrap;
+    }
+
+    .booking-bar__field {
+      flex: 1 1 calc(50% - 1px);
+      min-width: 0;
+    }
+
+    .booking-bar__field:nth-child(2) {
+      border-right: none;
+    }
+
+    .booking-bar__field:nth-child(3) {
+      border-right: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .booking-bar__submit {
+      width: 100%;
+      padding: var(--space-md);
+      text-align: center;
+    }
+  }
+
+  /* ── Intro ── */
+  .intro {
+    padding: var(--section-padding-y) var(--section-padding-x);
+  }
+
+  .intro__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  /* ── Our House ── */
+  .our-house {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .our-house__heading {
+    margin-bottom: var(--space-lg);
+  }
+
+  .our-house__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .our-house__grid {
+      grid-template-columns: 2fr 3fr;
+      grid-template-rows: auto auto;
+    }
+  }
+
+  .our-house__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    justify-content: center;
+  }
+
+  .our-house__text p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .our-house__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .our-house__image--main {
+      grid-row: 1;
+      grid-column: 2;
+    }
+
+    .our-house__image--main img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+  }
+
+  .our-house__image:not(.our-house__image--main) img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .our-house__desc {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  /* ── Stay With Us ── */
+  .stay-with-us {
+    padding: 0;
+  }
+
+  .stay-with-us__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .stay-with-us__grid {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+
+  .stay-with-us__image {
+    position: relative;
+  }
+
+  .stay-with-us__image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .stay-with-us__image img {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+  }
+
+  .stay-with-us__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-overlay);
+  }
+
+  .stay-with-us__title {
+    color: var(--color-white);
+    font-size: var(--text-3xl);
+  }
+
+  /* ── Eat & Drink ── */
+  .eat-drink {
+    background-color: #000;
+    color: var(--color-cream);
+    padding: var(--section-padding-y) 0;
+  }
+
+  .eat-drink :global(.section-heading) {
+    color: var(--color-cream);
+  }
+
+  .eat-drink__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .eat-drink__cards {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+  }
+
+  .eat-drink__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .eat-drink__card-image img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .eat-drink__card-title {
+    font-family: 'Poppins', var(--font-ui);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: var(--space-sm);
+    color: var(--color-cream);
+  }
+
+  .eat-drink__card-desc {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: rgba(250, 248, 245, 0.75);
+    flex: 1;
+  }
+
+  .eat-drink :global(.btn--ghost) {
+    color: var(--color-cream);
+  }
+
+  /* ── Full House ── */
+  .full-house {
+    padding: 0;
+  }
+
+  .full-house__bg {
+    background-image: linear-gradient(var(--color-overlay), var(--color-overlay)),
+      url('/images/dining-courtyard.png');
+    background-size: cover;
+    background-position: center;
+    padding: var(--space-5xl) var(--section-padding-x);
+    color: var(--color-white);
+  }
+
+  .full-house__title {
+    color: var(--color-white);
+    margin-bottom: var(--space-lg);
+  }
+
+  .full-house__text {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-xl);
+  }
+
+  .full-house__cta :global(.btn--secondary) {
+    color: var(--color-white);
+    border-color: var(--color-white);
+  }
+
+  .full-house__cta :global(.btn--secondary:hover) {
+    background-color: var(--color-white);
+    color: var(--color-charcoal);
+  }
+
+  /* ── Packages ── */
+  .packages {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .packages__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 640px) {
+    .packages__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .packages__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .packages__item {
+    display: block;
+    text-decoration: none;
+    color: var(--color-charcoal);
+  }
+
+  .packages__item img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    margin-bottom: var(--space-md);
+  }
+
+  .packages__item-info {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .packages__item-title {
+    font-family: 'Poppins', var(--font-ui);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .packages__item-cta {
+    font-size: var(--text-xs);
+    color: var(--color-warm-gray);
+    white-space: nowrap;
+  }
+</style>

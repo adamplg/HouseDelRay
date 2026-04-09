@@ -1,0 +1,20 @@
+title: The Delray Suite
+subtitle: Our signature room
+description: A spacious suite with floor-to-ceiling windows overlooking Kerem HaTeimanim's rooftops. Featuring curated artwork, a king-size bed with premium linens, a deep soaking tub, and a private terrace perfect for morning coffee or evening cocktails.
+images:
+  - /images/room-bedroom.png
+  - /images/room-bathtub.png
+  - /images/room-desk.png
+  - /images/room-bathroom.png
+amenities:
+  - King-size bed
+  - Private terrace
+  - Deep soaking tub
+  - Nespresso machine
+  - Bluetooth speaker
+  - Premium toiletries
+  - Plush robes & slippers
+  - Smart TV
+capacity: 2
+size: 45 sqm
+order: 1

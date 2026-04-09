@@ -1,0 +1,192 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import EventCard from '@/components/blocks/EventCard.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+
+const months = ['October', 'November', 'December', 'January'];
+
+const octoberEvents = [
+  { title: 'Marina Maximilian Blumin', description: 'An intimate night with Marina Maximilian Blumin — Doors at 8PM, show at 9. Signature cocktails and seating included. Limited spots, members only.', date: 'Tuesday, Sep 23', time: '19:00' },
+  { title: 'Lee Yanor', description: 'A talk with Visual Artist Lee Yanor. A walk through of her work through the years. Accompanied by cocktails. A talk with Visual Artist Lee Yanor. A walk through of her work through the years. Accompanied by cocktails.', date: 'Tuesday, Sep 23', time: '19:00' },
+  { title: 'Movie Night', description: 'Close out summer with poolside drinks, sunset DJ sets, and a laid-back crowd. Light bites, great cocktails, and the right vibe — all included. Members only.', date: 'Tuesday, Sep 23', time: '19:00' },
+  { title: 'Assaf Amdursky Live', description: "To mark the thirtieth anniversary of Benny Amdursky's death, his son, Assaf, is producing a new show, during which he will perform songs by his father, some of the most important singers and producers.", date: 'Tuesday, Sep 23', time: '19:00' },
+  { title: 'End of Summer Party', description: 'Close out summer with poolside drinks, sunset DJ sets, and a laid-back crowd. Light bites, great cocktails, and the right vibe — all included. Members only. Close out summer with poolside drinks, sunset DJ.', date: 'Tuesday, Sep 23', time: '19:00' },
+];
+
+const novemberEvents = [
+  { title: 'Yasmeen Godder', description: "To mark the thirtieth anniversary of Benny Amdursky's death, his son, Assaf, is producing a new show, during which he will perform songs by his father, some of the most important singers and producers.", date: 'Tuesday, Sep 23', time: '19:00' },
+  { title: 'Masks Ball', description: 'Close out summer with poolside drinks, sunset DJ sets, and a laid-back crowd. Light bites, great cocktails, and the right vibe — all included. Members only. Close out summer with poolside drinks, sunset DJ.', date: 'Tuesday, Sep 23', time: '19:00' },
+];
+---
+<PageLayout title="Events" headerMode="solid">
+  <PageHero title="October Events" height="none" />
+
+  <!-- Month Tabs -->
+  <section class="month-tabs">
+    <Container>
+      <div class="month-tabs__bar" role="tablist" aria-label="Event months">
+        {months.map((month, i) => (
+          <button
+            class:list={['month-tabs__tab', { 'month-tabs__tab--active': i === 0 }]}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`panel-${month.toLowerCase()}`}
+            data-month-tab={month.toLowerCase()}
+          >
+            {month}
+          </button>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- October Events -->
+  <section class="events-list" id="panel-october" role="tabpanel" data-month-panel="october">
+    <Container>
+      <div class="events-list__items">
+        {octoberEvents.map((event) => (
+          <EventCard
+            title={event.title}
+            description={event.description}
+            date={event.date}
+            time={event.time}
+            layout="horizontal"
+          />
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- November Events -->
+  <section class="events-list events-list--hidden" id="panel-november" role="tabpanel" data-month-panel="november" aria-hidden="true">
+    <Container>
+      <SectionHeading>November Events</SectionHeading>
+      <div class="events-list__items">
+        {novemberEvents.map((event) => (
+          <EventCard
+            title={event.title}
+            description={event.description}
+            date={event.date}
+            time={event.time}
+            layout="horizontal"
+          />
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- December (placeholder) -->
+  <section class="events-list events-list--hidden" id="panel-december" role="tabpanel" data-month-panel="december" aria-hidden="true">
+    <Container>
+      <SectionHeading>December Events</SectionHeading>
+      <p class="events-list__empty">No upcoming events. Check back soon.</p>
+    </Container>
+  </section>
+
+  <!-- January (placeholder) -->
+  <section class="events-list events-list--hidden" id="panel-january" role="tabpanel" data-month-panel="january" aria-hidden="true">
+    <Container>
+      <SectionHeading>January Events</SectionHeading>
+      <p class="events-list__empty">No upcoming events. Check back soon.</p>
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .month-tabs {
+    padding: var(--space-md) 0;
+    border-bottom: var(--border-thin);
+  }
+
+  .month-tabs__bar {
+    display: flex;
+    gap: var(--space-lg);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .month-tabs__tab {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    padding: var(--space-sm) 0;
+    color: var(--color-warm-gray);
+    border: none;
+    background: none;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all var(--duration-fast) var(--ease-default);
+  }
+
+  .month-tabs__tab--active {
+    color: var(--color-charcoal);
+    border-bottom-color: var(--color-charcoal);
+    font-weight: 600;
+  }
+
+  .month-tabs__tab:hover {
+    color: var(--color-charcoal);
+  }
+
+  .events-list {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .events-list--hidden {
+    display: none;
+  }
+
+  .events-list__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .events-list__empty {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    color: var(--color-warm-gray);
+    text-align: center;
+    padding: var(--space-3xl) 0;
+  }
+</style>
+
+<script>
+  function initMonthTabs() {
+    const tabs = document.querySelectorAll('[data-month-tab]');
+    const panels = document.querySelectorAll('[data-month-panel]');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const month = (tab as HTMLElement).dataset.monthTab;
+
+        // Update tabs
+        tabs.forEach((t) => {
+          t.classList.remove('month-tabs__tab--active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('month-tabs__tab--active');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Update panels
+        panels.forEach((panel) => {
+          const panelMonth = (panel as HTMLElement).dataset.monthPanel;
+          if (panelMonth === month) {
+            panel.classList.remove('events-list--hidden');
+            panel.setAttribute('aria-hidden', 'false');
+          } else {
+            panel.classList.add('events-list--hidden');
+            panel.setAttribute('aria-hidden', 'true');
+          }
+        });
+      });
+    });
+  }
+
+  initMonthTabs();
+  document.addEventListener('astro:after-swap', initMonthTabs);
+</script>

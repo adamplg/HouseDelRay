@@ -1,0 +1,157 @@
+---
+import MagazineLayout from '@/layouts/MagazineLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import ArticleCard from '@/components/blocks/ArticleCard.astro';
+---
+<MagazineLayout title="TLV Nightlife: Five Hidden Speakeasies">
+  <!-- Article Header -->
+  <section class="article-header">
+    <img src="/images/placeholder.svg" alt="Hidden speakeasies" class="article-header__image" loading="eager" />
+  </section>
+
+  <!-- Article Content -->
+  <article class="article-body">
+    <Container width="narrow">
+      <div class="article-meta">
+        <span class="article-meta__date">Wednesday, April 20, 2027</span>
+      </div>
+
+      <h1 class="article-title">TLV Nightlife: Five Hidden Speakeasies</h1>
+
+      <p class="article-subtitle">
+        Did somebody say speakeasy? These five hidden cocktail bar gems
+        are filled with prohibition-inspired fun
+      </p>
+
+      <div class="prose">
+        <p>
+          Shh! Don't tell anyone, but Time Out Israel has rounded up the five best speakeasy bars in Tel Aviv. Step out
+          of your cozy comfortable zone and into the world of American pop-up at these hidden bars where the art of
+          mixology is no joke. When you're bored of the obvious bar scene or simply looking for a more exciting
+          evening on the town, the speakeasy bars are it. You'd be hard pressed to find a more exciting
+          place. Speakeasy culture and vibe with cocktails that rival the best of the city!
+        </p>
+
+        <h2>1. Butler</h2>
+        <p>
+          The quaint one-room bar nestled inside Dallal is a visual overload. The walls are adorned with period
+          pieces like paintings, key holders and other gems. More room's filled with stools, swirls, boxes and other
+          strategically set bits of the bar, mixology masterpiece tucked smuggled into the cellar. While Bellboy asks for
+          cocktails and enjoys serving mimosas and magic drinks, Butler knows how to spotlight the cocktail itself — in
+          many forms. Unflinched, just undeniably rich vibrations in simple, identical glassware glasses. Mind over the norms:
+          "focus in" these shows the infinite possibilities. Bartenders serve the "Coffee Cocktail," which means
+          mainly Italian coffee. But there's also a drop of sweetness it's, and the "Harakiri," which looks a thousand or
+          cocktails just dressed with subtle notes of taste. When you do, the enter the misfits of the best hits Discover is
+          unwinding weekend right, and the best of your visits to Butler. You'll have a question if it was a lie
+          choice to begin with: it ain't a legend since cold-order, Become cool jazz knives in a time in at arts.
+        </p>
+
+        <img src="/images/placeholder.svg" alt="Speakeasy interior" />
+        <p class="text-caption text-center">A secret cocktail bar</p>
+
+        <h2>2. Jasper John's</h2>
+        <p>
+          With cocktail bars popping up left and right on Dizengoff, it can be easy to miss this slightly hidden spot.
+          Jasper John's is a cozy little bar with a few armchairs and creative cocktails with names like "Plan Aperol" and
+          "Black Magic." Try our of their delicious non-alcoholic cocktail too: the one area that are only more of bar
+          Jasper John's has adopted the unofficial Italian happy hour called "Aperitivo" — order one of the between the
+          hours of 19:00 and 20:00 and get free tapas in this Dizengoff corridor too. With a happening late night is well free of the
+          cold barriers, you can stand and finish your night here.
+        </p>
+
+        <img src="/images/placeholder.svg" alt="Jasper John's interior" />
+        <p class="text-caption text-center">A secret cocktail bar</p>
+      </div>
+    </Container>
+  </article>
+
+  <!-- Related Articles -->
+  <section class="related">
+    <Container>
+      <div class="related__grid">
+        <ArticleCard
+          title="Valentine Special"
+          tags={['Events']}
+          date="Oct 12th"
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Vinyl Therapy #4"
+          tags={['Music']}
+          date="Oct 12th"
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Sunset DJ Set"
+          tags={['Music']}
+          date="Oct 12th"
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+      </div>
+    </Container>
+  </section>
+</MagazineLayout>
+
+<style>
+  .article-header {
+    padding-top: 80px;
+  }
+
+  .article-header__image {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+  }
+
+  .article-body {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .article-meta {
+    margin-bottom: var(--space-lg);
+  }
+
+  .article-meta__date {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-warm-gray);
+  }
+
+  .article-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: 400;
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+  }
+
+  .article-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-charcoal-light);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .related {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .related__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .related__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

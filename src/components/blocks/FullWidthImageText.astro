@@ -1,0 +1,71 @@
+---
+import Button from '@/components/ui/Button.astro';
+
+interface Props {
+  title: string;
+  text: string;
+  image?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  title,
+  text,
+  image = '/images/placeholder.svg',
+  ctaText,
+  ctaLink,
+} = Astro.props;
+---
+<section class="fw-image-text">
+  <div class="fw-image-text__bg" style={`background-image: linear-gradient(var(--color-overlay), var(--color-overlay)), url('${image}');`}>
+    <div class="fw-image-text__content">
+      <h2 class="fw-image-text__title text-section-title">{title}</h2>
+      <p class="fw-image-text__text">{text}</p>
+      {ctaText && ctaLink && (
+        <Button href={ctaLink} variant="secondary" size="md">
+          {ctaText}
+        </Button>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .fw-image-text__bg {
+    background-size: cover;
+    background-position: center;
+    padding: var(--space-5xl) var(--section-padding-x);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .fw-image-text__content {
+    text-align: center;
+    color: var(--color-white);
+    max-width: 650px;
+  }
+
+  .fw-image-text__title {
+    color: var(--color-white);
+    margin-bottom: var(--space-lg);
+  }
+
+  .fw-image-text__text {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-xl);
+  }
+
+  .fw-image-text__content :global(.btn--secondary) {
+    color: var(--color-white);
+    border-color: var(--color-white);
+  }
+
+  .fw-image-text__content :global(.btn--secondary:hover) {
+    background-color: var(--color-white);
+    color: var(--color-charcoal);
+  }
+</style>

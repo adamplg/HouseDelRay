@@ -1,0 +1,100 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+---
+<PageLayout title="Conditions Générales" description="Conditions générales d'utilisation de House of Delray." locale="fr">
+  <PageHero title="Conditions Générales" height="none" />
+
+  <section class="legal">
+    <Container width="narrow">
+      <div class="prose">
+        <p class="legal__updated">Dernière mise à jour : 1er avril 2027</p>
+
+        <h2>1. Acceptation des Conditions</h2>
+        <p>
+          En accédant au site web et aux services de House of Delray, vous acceptez d'être lié(e) par les présentes Conditions Générales. Si vous n'acceptez pas l'ensemble de ces conditions, veuillez ne pas utiliser notre site ni nos services.
+        </p>
+
+        <h2>2. Réservations</h2>
+        <p>
+          Toute réservation est soumise à disponibilité. En effectuant une réservation, vous acceptez le tarif, la politique d'annulation et les conditions spécifiques associés au forfait choisi. Une carte de crédit valide est requise pour garantir votre réservation.
+        </p>
+
+        <h2>3. Arrivée et Départ</h2>
+        <ul>
+          <li>Heure d'arrivée : 15h00</li>
+          <li>Heure de départ : 11h00</li>
+          <li>L'arrivée anticipée et le départ tardif sont soumis à disponibilité et peuvent entraîner des frais supplémentaires.</li>
+          <li>Une pièce d'identité officielle avec photo est exigée à l'arrivée.</li>
+        </ul>
+
+        <h2>4. Politique d'Annulation</h2>
+        <p>
+          Les conditions d'annulation varient selon le type de tarif et le forfait choisi. Veuillez consulter votre confirmation de réservation pour les modalités précises. En règle générale :
+        </p>
+        <ul>
+          <li>Tarifs standard : annulation gratuite jusqu'à 48 heures avant l'arrivée.</li>
+          <li>Tarifs non remboursables : aucune annulation ni modification possible.</li>
+          <li>Forfaits spéciaux : soumis aux conditions particulières de chaque forfait.</li>
+        </ul>
+
+        <h2>5. Règlement Intérieur</h2>
+        <p>Les hôtes sont priés de respecter l'établissement et les autres clients. Les règles suivantes s'appliquent :</p>
+        <ul>
+          <li>Il est interdit de fumer à l'intérieur.</li>
+          <li>Les heures de calme sont observées entre 23h00 et 7h00.</li>
+          <li>Les animaux de compagnie ne sont pas admis sauf accord préalable.</li>
+          <li>Les hôtes sont responsables de tout dommage causé à l'établissement durant leur séjour.</li>
+        </ul>
+
+        <h2>6. Responsabilité</h2>
+        <p>
+          House of Delray ne saurait être tenu responsable de toute perte, dommage ou préjudice subi par les hôtes ou leurs biens, sauf en cas de négligence de notre part. Nous recommandons aux hôtes de déposer leurs objets de valeur dans le coffre-fort mis à disposition dans chaque chambre.
+        </p>
+
+        <h2>7. Propriété Intellectuelle</h2>
+        <p>
+          L'ensemble du contenu de ce site — textes, images, logos et éléments de design — est la propriété de House of Delray et est protégé par le droit d'auteur et le droit des marques. Toute reproduction, distribution ou utilisation sans notre consentement écrit préalable est interdite.
+        </p>
+
+        <h2>8. Vie Privée</h2>
+        <p>
+          L'utilisation de notre site est également régie par notre
+          <a href="/fr/politique-de-confidentialite">Politique de Confidentialité</a>. Nous vous invitons à la consulter pour comprendre comment nous collectons et utilisons vos informations.
+        </p>
+
+        <h2>9. Droit Applicable</h2>
+        <p>
+          Les présentes Conditions Générales sont régies et interprétées conformément au droit de l'État d'Israël. Tout litige sera soumis à la compétence exclusive des tribunaux de Tel Aviv-Jaffa.
+        </p>
+
+        <h2>10. Contact</h2>
+        <p>
+          Pour toute question relative aux présentes Conditions Générales, veuillez nous contacter à :
+        </p>
+        <p>
+          <strong>House of Delray</strong><br />
+          8 rue Nes HaGalshan<br />
+          Kerem HaTeimanim, Tel Aviv<br />
+          E-mail : <a href="mailto:info@delray.com">info@delray.com</a>
+        </p>
+      </div>
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .legal__updated {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-warm-gray);
+    margin-bottom: var(--space-2xl);
+  }
+</style>

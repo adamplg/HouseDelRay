@@ -1,0 +1,17 @@
+title: The Garden Room
+subtitle: Tucked away in green
+description: A serene ground-floor retreat opening onto a lush private garden. Wake up to birdsong and the scent of jasmine. Features a queen-size bed, rain shower, and direct garden access — your own pocket of calm in the heart of the city.
+images:
+  - /images/room-bedroom.png
+  - /images/room-bathroom.png
+amenities:
+  - Queen-size bed
+  - Private garden access
+  - Rain shower
+  - Nespresso machine
+  - Bluetooth speaker
+  - Premium toiletries
+  - Smart TV
+capacity: 2
+size: 32 sqm
+order: 2

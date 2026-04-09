@@ -1,0 +1,80 @@
+---
+interface LinkItem {
+  title: string;
+  image?: string;
+  link: string;
+}
+
+interface Props {
+  items: LinkItem[];
+}
+
+const { items } = Astro.props;
+---
+<div class="image-links">
+  {items.map((item) => (
+    <a href={item.link} class="image-links__item img-hover-zoom">
+      <img src={item.image || '/images/placeholder.svg'} alt={item.title} loading="lazy" />
+      <div class="image-links__overlay">
+        <span class="image-links__title">{item.title}</span>
+      </div>
+    </a>
+  ))}
+</div>
+
+<style>
+  .image-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+
+  @media (min-width: 768px) {
+    .image-links {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+  }
+
+  .image-links__item {
+    position: relative;
+    display: block;
+    text-decoration: none;
+  }
+
+  .image-links__item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    filter: blur(4px);
+    transform: scale(1.05);
+  }
+
+  .image-links__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-overlay);
+    transition: background-color var(--duration-fast) var(--ease-default);
+  }
+
+  .image-links__item:hover .image-links__overlay {
+    background: rgba(44, 41, 38, 0.4);
+  }
+
+  .image-links__item {
+    overflow: hidden;
+  }
+
+  .image-links__title {
+    font-family: 'Poppins', var(--font-ui);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    text-align: center;
+  }
+</style>

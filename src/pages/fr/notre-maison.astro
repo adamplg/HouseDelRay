@@ -1,0 +1,180 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import ImageTitleLinks from '@/components/blocks/ImageTitleLinks.astro';
+---
+<PageLayout title="Notre Maison" headerMode="transparent" locale="fr">
+  <PageHero title="L'art de Vivre" height="tall" backgroundImage="/images/courtyard-evening.png" class="hero--blur" />
+
+  <!-- Description -->
+  <section class="description">
+    <Container width="narrow">
+      <p class="description__text text-center">
+        Notre philosophie : Lové dans le bouillonnant Kerem HaTeimanim de Tel Aviv, le House of Delray
+        est une villa urbaine de huit chambres qui marie l'intimité d'une résidence privée à l'énergie
+        vibrante du quartier. Que vous investissiez les lieux en entier ou que vous veniez seul
+        pour un séjour sur mesure, le Delray offre une expérience raffinée et authentique — on se
+        croirait davantage chez un ami au goût exquis que dans un hôtel classique.
+      </p>
+      <div class="description__cta text-center">
+        <Button href="/fr/dormir" variant="secondary" size="md">
+          Séjourner
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Image + Title Links -->
+  <section class="explore">
+    <Container>
+      <ImageTitleLinks items={[
+        { title: 'Dormir', image: '/images/room-bedroom.png', link: '/fr/dormir' },
+        { title: 'Manger & Boire', image: '/images/food-burrata.png', link: '/fr/manger-et-boire' },
+        { title: 'Se Retrouver', image: '/images/speakeasy-bar.png', link: '/fr/evenements' },
+        { title: 'Privatiser', image: '/images/courtyard-evening.png', link: '/fr/privatisation' },
+      ]} />
+    </Container>
+  </section>
+
+  <!-- Idéalement Situé -->
+  <section class="located">
+    <Container>
+      <h2 class="located__heading text-section-title">Idéalement Situé</h2>
+      <div class="located__image-wrap">
+        <img src="/images/courtyard-evening.png" alt="Patio du Kerem HaTeimanim" loading="lazy" class="located__image" />
+      </div>
+      <p class="located__text text-center">
+        Le Kerem HaTeimanim est l'un des quartiers les plus captivants de Tel Aviv —
+        un savant mélange de charme ancien et d'énergie nouvelle vague. À deux pas
+        de la plage et du marché du Carmel, c'est un concentré de soleil, d'épices
+        et de cette effervescence si particulière.
+      </p>
+    </Container>
+  </section>
+
+  <!-- La Ville qui ne Dort Jamais -->
+  <section class="nightlife">
+    <div class="nightlife__bg">
+      <img src="/images/speakeasy-bar.png" alt="Vie nocturne de Tel Aviv" loading="lazy" class="nightlife__bg-image" />
+      <div class="nightlife__overlay"></div>
+      <div class="nightlife__content">
+        <h2 class="nightlife__title text-section-title text-center">La Ville qui ne Dort Jamais</h2>
+        <p class="nightlife__text text-center">
+          Quand le soleil se couche, l'énergie ne fait que s'intensifier. Cette ville
+          vit d'instinct et de rythme, où l'inattendu devient ordinaire et où la nuit
+          appartient à ceux qui savent se montrer.
+        </p>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  :global(.hero--blur) {
+    background-size: cover;
+    background-position: center;
+  }
+
+  :global(.hero--blur::before) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+  .description {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .description__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .explore {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .located {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .located__heading {
+    margin-bottom: var(--space-xl);
+  }
+
+  .located__image-wrap {
+    margin-bottom: var(--space-xl);
+  }
+
+  .located__image {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+  }
+
+  .located__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .nightlife__bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nightlife__bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(4px);
+    transform: scale(1.05);
+  }
+
+  .nightlife__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+  }
+
+  .nightlife__content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-4xl) var(--section-padding-x);
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .nightlife__title {
+    color: var(--color-cream);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .nightlife__text {
+    color: rgba(250, 248, 245, 0.85);
+    text-align: center;
+    max-width: 500px;
+    margin-inline: auto;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+</style>

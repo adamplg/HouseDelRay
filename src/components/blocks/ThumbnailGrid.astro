@@ -1,0 +1,134 @@
+---
+import Button from '@/components/ui/Button.astro';
+import { useTranslations, type Locale } from '@/i18n/utils';
+
+interface GridItem {
+  image?: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  link?: string;
+  ctaText?: string;
+  comingSoon?: boolean;
+}
+
+interface Props {
+  items: GridItem[];
+  columns?: 2 | 3 | 4;
+  class?: string;
+  locale?: Locale;
+}
+
+const { items, columns = 2, class: className = '', locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+---
+<div class:list={['thumb-grid', `thumb-grid--cols-${columns}`, className]}>
+  {items.map((item) => (
+    <div class="thumb-grid__item">
+      <div class="thumb-grid__image img-hover-zoom">
+        {item.link && !item.comingSoon ? (
+          <a href={item.link}>
+            <img src={item.image || '/images/placeholder.svg'} alt={item.title} loading="lazy" />
+          </a>
+        ) : (
+          <img src={item.image || '/images/placeholder.svg'} alt={item.title} loading="lazy" />
+        )}
+        {item.comingSoon && (
+          <span class="thumb-grid__badge text-ui">{t('thumbnail.comingSoon')}</span>
+        )}
+      </div>
+      <div class="thumb-grid__info">
+        <div>
+          <h3 class="thumb-grid__title">{item.title}</h3>
+          {item.subtitle && <p class="thumb-grid__subtitle">{item.subtitle}</p>}
+          {item.description && <p class="thumb-grid__desc">{item.description}</p>}
+        </div>
+        {item.ctaText && item.link && (
+          <Button href={item.link} variant="secondary" size="sm">
+            {item.ctaText}
+          </Button>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .thumb-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 640px) {
+    .thumb-grid--cols-2,
+    .thumb-grid--cols-3,
+    .thumb-grid--cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .thumb-grid--cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .thumb-grid--cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .thumb-grid__image {
+    position: relative;
+    margin-bottom: var(--space-md);
+  }
+
+  .thumb-grid__image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .thumb-grid__image a {
+    display: block;
+  }
+
+  .thumb-grid__badge {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    padding: 0.3rem 0.75rem;
+    background-color: var(--color-sand);
+    color: var(--color-charcoal);
+    font-size: 0.6rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .thumb-grid__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .thumb-grid__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+  }
+
+  .thumb-grid__subtitle {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-warm-gray);
+    margin-bottom: var(--space-sm);
+  }
+
+  .thumb-grid__desc {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-charcoal-light);
+  }
+</style>

@@ -1,0 +1,298 @@
+---
+import { siteConfig } from '@/data/siteConfig';
+import { getMainNav, getSecondaryNav } from '@/data/navigation';
+import { useTranslations, getAlternatePath, type Locale } from '@/i18n/utils';
+
+interface Props {
+  mode?: 'transparent' | 'solid' | 'dark';
+  locale?: Locale;
+}
+
+const { mode = 'transparent', locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const navItems = getMainNav(locale);
+const secondaryItems = getSecondaryNav(locale);
+const homeHref = locale === 'fr' ? '/fr' : '/';
+const alternatePath = getAlternatePath(Astro.url.pathname, locale === 'en' ? 'fr' : 'en');
+---
+<header
+  class:list={['header', `header--${mode}`]}
+  data-header
+  data-initial-mode={mode}
+>
+  <div class="header__inner">
+    <!-- Left: Hamburger + Main Nav -->
+    <div class="header__left">
+      <button
+        class="header__hamburger"
+        aria-label={locale === 'fr' ? 'Ouvrir le menu' : 'Open menu'}
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <nav class="header__nav" aria-label={locale === 'fr' ? 'Navigation principale' : 'Main navigation'}>
+        {navItems.map((item) => (
+          <a href={item.href} class="header__nav-link text-ui">
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Center: Logo -->
+    <a href={homeHref} class="header__logo" aria-label="House of Delray">
+      <img src="/images/logo.svg" alt="House of Delray" class="header__logo-img" />
+    </a>
+
+    <!-- Right: Secondary Nav + Lang Switch + Book Now -->
+    <div class="header__right">
+      <nav class="header__nav header__nav--secondary" aria-label={locale === 'fr' ? 'Navigation secondaire' : 'Secondary navigation'}>
+        {secondaryItems.map((item) => (
+          <a href={item.href} class="header__nav-link text-ui">
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <a href={alternatePath} class="header__lang-switch text-ui">
+        {t('lang.switchTo')}
+      </a>
+
+      <a href={siteConfig.bookingUrl} class="header__book-btn text-ui">
+        {t('nav.bookNow')}
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-header);
+    transition:
+      background-color var(--duration-normal) var(--ease-default),
+      box-shadow var(--duration-normal) var(--ease-default);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--section-padding-x);
+    max-width: 1600px;
+    margin-inline: auto;
+  }
+
+  .header__left,
+  .header__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    flex: 1;
+  }
+
+  .header__right {
+    justify-content: flex-end;
+  }
+
+  /* ── Hamburger ── */
+  .header__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-xs);
+    width: 28px;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: currentColor;
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+
+  /* ── Nav Links ── */
+  .header__nav {
+    display: none;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 1024px) {
+    .header__nav {
+      display: flex;
+    }
+  }
+
+  .header__nav-link {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .header__nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width var(--duration-fast) var(--ease-default);
+  }
+
+  .header__nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* ── Logo ── */
+  .header__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .header__logo-img {
+    height: clamp(1.5rem, 2.5vw, 2rem);
+    width: auto;
+    transition: filter var(--duration-normal) var(--ease-default);
+  }
+
+  /* ── Language Switcher ── */
+  .header__lang-switch {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-bottom: 2px;
+    position: relative;
+  }
+
+  .header__lang-switch::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width var(--duration-fast) var(--ease-default);
+  }
+
+  .header__lang-switch:hover::after {
+    width: 100%;
+  }
+
+  /* ── Book Now Button ── */
+  .header__book-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    background-color: var(--color-forest);
+    color: var(--color-white);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--duration-fast) var(--ease-default);
+    font-weight: 600;
+  }
+
+  .header__book-btn:hover {
+    background-color: var(--color-forest-light);
+  }
+
+  /* ═══ Mode: Transparent (over hero) ═══ */
+  .header--transparent {
+    background-color: transparent;
+    color: var(--color-white);
+  }
+
+  .header--transparent .header__logo-img {
+    filter: brightness(0) invert(1);
+  }
+
+  /* ═══ Mode: Solid (scrolled past hero) ═══ */
+  .header--solid {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ═══ Mode: Dark (speakeasy) ═══ */
+  .header--dark {
+    background-color: var(--color-night);
+    color: var(--color-cream);
+  }
+
+  .header--dark .header__logo-img {
+    filter: brightness(0) invert(1);
+  }
+
+  .header--dark.header--scrolled {
+    background-color: var(--color-night);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ═══ Scrolled state (applied via JS) ═══ */
+  .header--transparent.header--scrolled {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header--transparent.header--scrolled .header__logo-img {
+    filter: none;
+  }
+</style>
+
+<script>
+  function initHeader() {
+    const header = document.querySelector('[data-header]') as HTMLElement | null;
+    if (!header) return;
+
+    const initialMode = header.dataset.initialMode;
+
+    // Only do transparent→solid transition if initial mode is transparent
+    if (initialMode !== 'transparent') return;
+
+    // Observe the hero section — when it leaves viewport, switch to solid
+    const hero = document.querySelector('[data-hero]');
+    if (!hero) {
+      // No hero on page — stay solid
+      header.classList.add('header--scrolled');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          header.classList.remove('header--scrolled');
+        } else {
+          header.classList.add('header--scrolled');
+        }
+      },
+      { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+    );
+
+    observer.observe(hero);
+  }
+
+  // Run on initial load and on View Transition navigation
+  initHeader();
+  document.addEventListener('astro:after-swap', initHeader);
+</script>

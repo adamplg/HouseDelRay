@@ -1,0 +1,142 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import ThumbnailGrid from '@/components/blocks/ThumbnailGrid.astro';
+import Accordion from '@/components/blocks/Accordion.astro';
+import ContactForm from '@/components/blocks/ContactForm.astro';
+---
+<PageLayout title="Private Buyout" headerMode="transparent">
+  <PageHero title="Book the Full House" height="tall" videoSrc="/video/rent-house.mp4" />
+
+  <!-- Description -->
+  <section class="buyout-desc">
+    <Container width="narrow">
+      <p class="buyout-desc__text text-center">
+        Whether you're looking to rent a room for a night, the restaurant or
+        the entire house all for yourself - our venue accommodates your every
+        need. We offer custom-made stay packages, with our without our
+        venues for you and your crew. Write us an email to receive a tailored
+        proposal for your needs.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Package Grid -->
+  <section class="buyout-packages">
+    <Container>
+      <ThumbnailGrid
+        items={[
+          {
+            title: 'The Essential',
+            subtitle: 'Delray Basics',
+            description: 'Simply beautiful in classic Delray style. Our purest, most effortless rooms include breakfast, daily housekeeping, and artisan bath products in a cozy, character-filled space.',
+            ctaText: 'Get Details',
+            link: '#',
+          },
+          {
+            title: 'The Elevated',
+            subtitle: 'Delray+',
+            description: 'A home-away-from-home beyond the usual. Live as the locals do with rooftop access, our hand-picked Tel Aviv insider guide and perks — art, culture, and personality.',
+            ctaText: 'Get Details',
+            link: '#',
+          },
+          {
+            title: 'The Signature',
+            subtitle: 'Deep Dive',
+            description: "Full culture full-throttle. This stay is more of a curated Tel Aviv art, photography, innovation, and non-touristy underground or \"just because\" moments to revisit exclusives.",
+            ctaText: 'Get Details',
+            link: '#',
+          },
+          {
+            title: 'The Full Monty',
+            subtitle: 'All Out Fun',
+            description: 'Total immersion in Tel Aviv, on our terms and still hand made. Breakfast is just the start of an all-access ride into Delray\'s curio room. More elevated here — unexpectedly, an unforgettable weekend, and exclusive pool.',
+            ctaText: 'Get Details',
+            link: '#',
+          },
+        ]}
+        columns={2}
+      />
+    </Container>
+  </section>
+
+  <!-- What's Inside Accordions -->
+  <section class="buyout-details">
+    <Container>
+      <Accordion
+        items={[
+          { title: "What's inside The Essential?", content: "8 beautifully designed rooms, daily breakfast for all guests, welcome drinks upon arrival, dedicated concierge service, access to all common areas including the courtyard and lobby lounge." },
+          { title: "What's inside The Elevated?", content: "Everything in The Essential plus: rooftop access for your group, custom welcome amenities, local neighborhood guide, bicycle rental for all guests, priority restaurant reservations." },
+          { title: "What's inside The Signature?", content: "Everything in The Elevated plus: curated Tel Aviv art and culture experience, private chef dinner, mixology workshop at the Speakeasy, personalized itinerary planning, late checkout." },
+          { title: "What's inside The Full Monty?", content: "Everything in The Signature plus: exclusive use of all venues (restaurant, rooftop, speakeasy), private events team, custom menu design with our head chef, dedicated photographer, airport transfers." },
+        ]}
+        columns={1}
+      />
+    </Container>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="buyout-form">
+    <div class="buyout-form__bg">
+      <Container>
+        <div class="buyout-form__grid">
+          <div class="buyout-form__image">
+            <img src="/images/courtyard-evening.png" alt="Private evening at the courtyard" loading="lazy" />
+          </div>
+          <div class="buyout-form__content">
+            <ContactForm title="Not Sure? Leave Your Details, We'll Be in Touch" formName="buyout" />
+          </div>
+        </div>
+      </Container>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .buyout-desc {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .buyout-desc__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  .buyout-packages {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .buyout-details {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .buyout-form__bg {
+    background-color: var(--color-charcoal);
+    padding: var(--space-4xl) 0;
+  }
+
+  .buyout-form__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .buyout-form__grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .buyout-form__image img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+</style>

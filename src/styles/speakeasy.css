@@ -1,0 +1,60 @@
+/* ═══════════════════════════════════════════════
+   House of Delray — Speakeasy Dark Theme
+   Applied via .theme-speakeasy on <body>
+   ═══════════════════════════════════════════════ */
+
+.theme-speakeasy {
+  --color-bg: var(--color-night);
+  --color-text: var(--color-cream);
+  --color-text-secondary: var(--color-warm-gray);
+  --color-accent: var(--color-magenta);
+  --color-accent-hover: var(--color-magenta-light);
+  --color-card-bg: var(--color-night-card);
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  background-color: var(--color-night);
+  color: var(--color-cream);
+}
+
+.theme-speakeasy h1,
+.theme-speakeasy h2,
+.theme-speakeasy h3,
+.theme-speakeasy h4,
+.theme-speakeasy h5,
+.theme-speakeasy h6 {
+  color: var(--color-cream);
+}
+
+.theme-speakeasy p {
+  color: rgba(250, 248, 245, 0.8);
+}
+
+.theme-speakeasy ::selection {
+  background-color: var(--color-magenta);
+  color: var(--color-white);
+}
+
+.theme-speakeasy :focus-visible {
+  outline-color: var(--color-magenta);
+}
+
+/* ── Animated Text (Speakeasy-specific) ── */
+.speakeasy-animated-text {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: var(--leading-snug);
+  padding: var(--space-4xl) var(--section-padding-x);
+}
+
+.speakeasy-animated-text .highlight {
+  color: var(--color-magenta);
+  font-weight: 600;
+}
+
+.speakeasy-animated-text .regular {
+  color: rgba(250, 248, 245, 0.6);
+  font-weight: 300;
+}

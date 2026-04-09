@@ -1,0 +1,159 @@
+---
+import MagazineLayout from '@/layouts/MagazineLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import ArticleCard from '@/components/blocks/ArticleCard.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+---
+<MagazineLayout title="Magazine" locale="fr">
+  <section class="magazine-header">
+    <Container>
+      <SectionHeading>Magazine</SectionHeading>
+    </Container>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="magazine-featured">
+    <Container>
+      <ArticleCard
+        title="Un Écrin Caché au-Dessus de la Ville : La Suite Loft du Delray"
+        excerpt="Dans les coulisses, au-dessus des toits, au cœur des chambres iconiques et effervescentes du Delray. Cette chambre (l'une de nos huit merveilles) est un véritable nid perché avec vue sur tout — et même si vous dormirez probablement à poings fermés, certains panoramas méritent qu'on veille."
+        date="Art & Culture"
+        tags={['Art & Culture', 'Intérieurs']}
+        image="/images/placeholder.svg"
+        link="/fr/magazine/hidden-gem"
+        variant="featured"
+      />
+    </Container>
+  </section>
+
+  <!-- Article Grid -->
+  <section class="magazine-grid">
+    <Container>
+      <div class="magazine-grid__items">
+        <ArticleCard
+          title="Pensé pour les Curieux et les Cultivés"
+          tags={['Art', 'Culture']}
+          date="12 oct., 10h00"
+          excerpt="Huit chambres, mille intentions. Ici, chaque détail a été pensé pour ceux qui regardent le monde avec appétit — amateurs d'art, flâneurs lettrés, voyageurs qui préfèrent les marges aux sentiers battus."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Cinq Tables pour Lesquelles on s'Habille"
+          tags={['Gastronomie', 'Restaurants']}
+          date="12 oct., 10h00"
+          excerpt="À Tel Aviv, on mange partout et à toute heure. Mais certaines adresses méritent qu'on troque les sandales contre des souliers — et qu'on réserve une semaine à l'avance."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Dans les Galeries Cachées de Tel Aviv"
+          tags={['Art', 'Design']}
+          date="12 oct., 10h00"
+          excerpt="Derrière les façades Bauhaus et les portes cochères de Florentin, une scène artistique foisonnante attend ceux qui savent où pousser la porte. Visite guidée, loin des circuits officiels."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Vinyl Therapy #4"
+          tags={['Musique', 'Événements']}
+          date="12 oct., 10h00"
+          excerpt="Le crépitement du vin, le souffle du saphir sur le sillon. Notre quatrième session vinyle invite les âmes mélomanes à redécouvrir le son tel qu'il a été conçu — chaleureux, vivant, imparfait."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="DJ Set au Coucher du Soleil"
+          tags={['Musique', 'Rooftop']}
+          date="12 oct., 10h00"
+          excerpt="Quand le ciel de Tel Aviv vire au rose et que la Méditerranée s'embrase, notre rooftop devient le plus beau dancefloor de la ville. Pieds nus, verre en main, horizon grand ouvert."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Spéciale Saint-Valentin"
+          tags={['Événements', 'Spéciales']}
+          date="12 oct., 10h00"
+          excerpt="Oubliez les roses rouges et les dîners convenus. Pour la Saint-Valentin, le Delray imagine une soirée à son image : intime, décalée, et résolument romantique — à la manière de Tel Aviv."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Second Featured -->
+  <section class="magazine-featured">
+    <Container>
+      <ArticleCard
+        title="L'Été ne Finit Jamais Ici"
+        excerpt="Il y a des endroits où les saisons s'effacent, où la lumière dorée persiste bien après septembre. Au Delray, l'été n'est pas une parenthèse — c'est un état d'esprit. Entre le rooftop baigné de soleil et les nuits tièdes du quartier, on finit par oublier quel mois on est."
+        date="Art de Vivre"
+        tags={['Art de Vivre']}
+        image="/images/placeholder.svg"
+        link="/fr/magazine/hidden-gem"
+        variant="featured"
+      />
+    </Container>
+  </section>
+
+  <!-- More Articles -->
+  <section class="magazine-grid">
+    <Container>
+      <div class="magazine-grid__items">
+        <ArticleCard
+          title="Spéciale Saint-Valentin"
+          tags={['Événements']}
+          date="12 oct."
+          excerpt="Une soirée pensée pour deux — ou pour ceux qui célèbrent l'amour sous toutes ses formes. Cocktails signatures, bougies, et cette atmosphère que seul le Delray sait créer."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Spéciale Saint-Valentin"
+          tags={['Événements']}
+          date="12 oct."
+          excerpt="Quand le soleil se couche sur Kerem HaTeimanim, les saveurs montent d'un cran. Notre chef a composé un menu éphémère — chaque plat, une déclaration."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Vinyl Therapy #4"
+          tags={['Musique']}
+          date="12 oct."
+          excerpt="Quatrième édition de notre rendez-vous vinyle. Cette fois, le DJ fouille dans les bacs de soul et de bossa nova — le genre de sélection qui transforme un apéro en souvenir."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+      </div>
+    </Container>
+  </section>
+</MagazineLayout>
+
+<style>
+  .magazine-header {
+    padding-top: calc(80px + var(--space-2xl));
+    padding-bottom: var(--space-lg);
+  }
+
+  .magazine-featured {
+    padding: var(--space-xl) 0 var(--space-2xl);
+  }
+
+  .magazine-grid {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .magazine-grid__items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .magazine-grid__items {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+  }
+</style>

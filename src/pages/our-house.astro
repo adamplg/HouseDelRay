@@ -1,0 +1,179 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import ImageTitleLinks from '@/components/blocks/ImageTitleLinks.astro';
+---
+<PageLayout title="Our House" headerMode="transparent">
+  <PageHero title="L'art de Vivre" height="tall" backgroundImage="/images/courtyard-evening.png" class="hero--blur" />
+
+  <!-- Description -->
+  <section class="description">
+    <Container width="narrow">
+      <p class="description__text text-center">
+        Our philosophy: Tucked away in Tel Aviv's electric Kerem HaTeimanim, House of Delray
+        is an eight-room urban villa that blends the intimacy of a private residence with the
+        vibrant pulse of the neighborhood. Whether you're taking over the whole place or
+        dropping in for a solo stay, Delray offers an elevated, insider experience that feels more
+        like staying at a local friend's chic townhouse than checking into a hotel.
+      </p>
+      <div class="description__cta text-center">
+        <Button href="/sleep" variant="secondary" size="md">
+          Stay With Us
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Image + Title Links -->
+  <section class="explore">
+    <Container>
+      <ImageTitleLinks items={[
+        { title: 'Sleep', image: '/images/room-bedroom.png', link: '/sleep' },
+        { title: 'Eat & Drink', image: '/images/food-burrata.png', link: '/eat-and-drink' },
+        { title: 'Connect', image: '/images/speakeasy-bar.png', link: '/events' },
+        { title: 'Takeover', image: '/images/courtyard-evening.png', link: '/private-buyout' },
+      ]} />
+    </Container>
+  </section>
+
+  <!-- Perfectly Located -->
+  <section class="located">
+    <Container>
+      <h2 class="located__heading text-section-title">Perfectly Located</h2>
+      <div class="located__image-wrap">
+        <img src="/images/courtyard-evening.png" alt="Kerem HaTeimanim courtyard" loading="lazy" class="located__image" />
+      </div>
+      <p class="located__text text-center">
+        Kerem HaTeimanim is one of Tel Aviv's most exciting corners - a soulful blend of
+        old-school charm and new-wave energy. Just steps from the beach and Carmel
+        Market, it's all sun, spice, and the best kind of chaos.
+      </p>
+    </Container>
+  </section>
+
+  <!-- City That Never Sleeps -->
+  <section class="nightlife">
+    <div class="nightlife__bg">
+      <img src="/images/speakeasy-bar.png" alt="Tel Aviv nightlife" loading="lazy" class="nightlife__bg-image" />
+      <div class="nightlife__overlay"></div>
+      <div class="nightlife__content">
+        <h2 class="nightlife__title text-section-title text-center">The City That Never Sleeps</h2>
+        <p class="nightlife__text text-center">
+          As the sun sets, the energy only sharpens. This city is driven by instinct
+          and rhythm, where the unexpected feels ordinary, and the night
+          belongs to everyone who knows how to show up.
+        </p>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  :global(.hero--blur) {
+    background-size: cover;
+    background-position: center;
+  }
+
+  :global(.hero--blur::before) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+  .description {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .description__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .explore {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .located {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .located__heading {
+    margin-bottom: var(--space-xl);
+  }
+
+  .located__image-wrap {
+    margin-bottom: var(--space-xl);
+  }
+
+  .located__image {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+  }
+
+  .located__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .nightlife__bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nightlife__bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(4px);
+    transform: scale(1.05);
+  }
+
+  .nightlife__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+  }
+
+  .nightlife__content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-4xl) var(--section-padding-x);
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .nightlife__title {
+    color: var(--color-cream);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .nightlife__text {
+    color: rgba(250, 248, 245, 0.85);
+    text-align: center;
+    max-width: 500px;
+    margin-inline: auto;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+</style>

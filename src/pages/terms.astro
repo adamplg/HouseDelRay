@@ -1,0 +1,112 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+---
+<PageLayout title="Terms & Conditions" description="House of Delray terms and conditions of use.">
+  <PageHero title="Terms & Conditions" height="none" />
+
+  <section class="legal">
+    <Container width="narrow">
+      <div class="prose">
+        <p class="legal__updated">Last updated: April 1, 2027</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing and using the House of Delray website and services, you agree to be bound by these
+          Terms & Conditions. If you do not agree with any part of these terms, please do not use our website
+          or services.
+        </p>
+
+        <h2>2. Reservations & Booking</h2>
+        <p>
+          All reservations are subject to availability. By making a reservation, you agree to the specific
+          rate, cancellation policy, and terms associated with the booking package selected. A valid credit
+          card is required to guarantee your reservation.
+        </p>
+
+        <h2>3. Check-In & Check-Out</h2>
+        <ul>
+          <li>Check-in time: 3:00 PM</li>
+          <li>Check-out time: 11:00 AM</li>
+          <li>Early check-in and late check-out are subject to availability and may incur additional charges.</li>
+          <li>Valid government-issued photo identification is required at check-in.</li>
+        </ul>
+
+        <h2>4. Cancellation Policy</h2>
+        <p>
+          Cancellation policies vary by rate type and package. Please refer to your booking confirmation
+          for specific cancellation terms. In general:
+        </p>
+        <ul>
+          <li>Standard rates: Free cancellation up to 48 hours before check-in.</li>
+          <li>Non-refundable rates: No cancellation or modification permitted.</li>
+          <li>Special packages: Subject to individual package terms.</li>
+        </ul>
+
+        <h2>5. Property Rules</h2>
+        <p>Guests are expected to respect the property and other guests. The following rules apply:</p>
+        <ul>
+          <li>Smoking is not permitted indoors.</li>
+          <li>Quiet hours are observed between 11:00 PM and 7:00 AM.</li>
+          <li>Pets are not permitted unless prior arrangements have been made.</li>
+          <li>Guests are responsible for any damage caused to the property during their stay.</li>
+        </ul>
+
+        <h2>6. Liability</h2>
+        <p>
+          House of Delray shall not be liable for any loss, damage, or injury to guests or their property,
+          except where caused by our negligence. We recommend that guests secure valuable items in the
+          in-room safe provided.
+        </p>
+
+        <h2>7. Intellectual Property</h2>
+        <p>
+          All content on this website — including text, images, logos, and design elements — is the
+          property of House of Delray and is protected by copyright and trademark laws. You may not
+          reproduce, distribute, or use any content without our prior written consent.
+        </p>
+
+        <h2>8. Privacy</h2>
+        <p>
+          Your use of our website is also governed by our
+          <a href="/privacy-policy">Privacy Policy</a>. Please review it to understand how we collect
+          and use your information.
+        </p>
+
+        <h2>9. Governing Law</h2>
+        <p>
+          These Terms & Conditions are governed by and construed in accordance with the laws of the
+          State of Israel. Any disputes shall be subject to the exclusive jurisdiction of the courts
+          of Tel Aviv-Jaffa.
+        </p>
+
+        <h2>10. Contact</h2>
+        <p>
+          For questions about these Terms & Conditions, please contact us at:
+        </p>
+        <p>
+          <strong>House of Delray</strong><br />
+          8 Nes HaGalshan St.<br />
+          Kerem HaTeimanim, Tel Aviv<br />
+          Email: <a href="mailto:info@delray.com">info@delray.com</a>
+        </p>
+      </div>
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .legal__updated {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-warm-gray);
+    margin-bottom: var(--space-2xl);
+  }
+</style>

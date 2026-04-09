@@ -1,0 +1,140 @@
+---
+import { useTranslations, type Locale } from '@/i18n/utils';
+
+interface HoursEntry {
+  label: string;
+  time: string;
+}
+
+interface Props {
+  hours: HoursEntry[];
+  title?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  locale?: Locale;
+}
+
+const { hours, email, phone, address, city, locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const title = Astro.props.title ?? t('hours.title');
+---
+<div class="hours">
+  <div class="hours__left">
+    {(address || email || phone) && (
+      <img src="/images/food-burrata.png" alt="Mediterranean cuisine at Delray" class="hours__image" loading="lazy" />
+    )}
+  </div>
+  <div class="hours__right">
+    <h3 class="hours__title">{title}</h3>
+    <div class="hours__list">
+      {hours.map((entry) => (
+        <div class="hours__entry">
+          <span class="hours__label">{entry.label}</span>
+          <span class="hours__time">{entry.time}</span>
+        </div>
+      ))}
+    </div>
+
+    {(email || phone) && (
+      <div class="hours__contact">
+        {email && (
+          <p class="hours__contact-line">
+            {t('hours.email')} — <a href={`mailto:${email}`}>{email}</a>
+          </p>
+        )}
+        {phone && (
+          <p class="hours__contact-line">
+            {t('hours.phone')} — <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
+          </p>
+        )}
+      </div>
+    )}
+
+    {(address || city) && (
+      <div class="hours__address">
+        {address && <p>{address}</p>}
+        {city && <p>{city}</p>}
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .hours {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-2xl) 0;
+  }
+
+  @media (min-width: 768px) {
+    .hours {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+  }
+
+  .hours__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .hours__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hours__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .hours__entry {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hours__label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-charcoal);
+  }
+
+  .hours__time {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-charcoal-light);
+  }
+
+  .hours__contact {
+    margin-bottom: var(--space-xl);
+  }
+
+  .hours__contact-line {
+    font-size: var(--text-sm);
+    color: var(--color-charcoal-light);
+    margin-bottom: var(--space-xs);
+  }
+
+  .hours__contact-line a {
+    color: var(--color-mauve-500);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .hours__address p {
+    font-size: var(--text-sm);
+    color: var(--color-charcoal-light);
+  }
+</style>

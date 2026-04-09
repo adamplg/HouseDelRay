@@ -1,0 +1,86 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import type { Locale } from '@/i18n/utils';
+
+const isFrench = Astro.url.pathname.startsWith('/fr');
+const locale: Locale = isFrench ? 'fr' : 'en';
+
+const content = {
+  en: {
+    title: 'Page Not Found',
+    description: "The page you're looking for doesn't exist.",
+    heading: 'Lost in Tel Aviv?',
+    text: "The page you're looking for seems to have wandered off. Let us guide you back.",
+    button: 'Back to Home',
+    home: '/',
+  },
+  fr: {
+    title: 'Page introuvable',
+    description: "La page que vous cherchez n'existe pas.",
+    heading: 'Égaré(e) à Tel Aviv ?',
+    text: "La page que vous cherchez semble s'être envolée. Laissez-nous vous ramener.",
+    button: "Retour à l'Accueil",
+    home: '/fr',
+  },
+};
+
+const c = content[locale];
+---
+<PageLayout title={c.title} description={c.description} locale={locale}>
+  <section class="not-found">
+    <Container>
+      <div class="not-found__content">
+        <span class="not-found__code">404</span>
+        <h1 class="not-found__title">{c.heading}</h1>
+        <p class="not-found__text">{c.text}</p>
+        <Button href={c.home} variant="secondary" size="lg">{c.button}</Button>
+      </div>
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: var(--section-padding-y) 0;
+    text-align: center;
+  }
+
+  .not-found__content {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .not-found__code {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--color-mauve-200);
+    margin-bottom: var(--space-md);
+  }
+
+  .not-found__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-lg);
+    color: var(--color-charcoal);
+  }
+
+  .not-found__text {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-charcoal-light);
+    margin-bottom: var(--space-2xl);
+  }
+</style>

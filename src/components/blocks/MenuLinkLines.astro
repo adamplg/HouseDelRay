@@ -1,0 +1,84 @@
+---
+import { useTranslations, type Locale } from '@/i18n/utils';
+
+interface MenuItem {
+  title: string;
+  link: string;
+  linkText?: string;
+}
+
+interface Props {
+  menus: MenuItem[];
+  locale?: Locale;
+}
+
+const { menus, locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+---
+<div class="menu-links">
+  {menus.map((menu) => (
+    <a href={menu.link} class="menu-links__item">
+      <span class="menu-links__title">{menu.title}</span>
+      <span class="menu-links__line"></span>
+      <span class="menu-links__cta text-ui">{menu.linkText || t('menuLinks.seeMenu')}</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .menu-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-links__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) 0;
+    text-decoration: none;
+    color: var(--color-charcoal);
+    border-bottom: var(--border-thin);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  .menu-links__item:first-child {
+    border-top: var(--border-thin);
+  }
+
+  .menu-links__item:hover {
+    color: var(--color-forest);
+  }
+
+  .menu-links__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  .menu-links__line {
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(
+      to right,
+      var(--color-mauve-200) 0,
+      var(--color-mauve-200) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+    min-width: 40px;
+  }
+
+  .menu-links__cta {
+    font-size: var(--text-xs);
+    color: var(--color-warm-gray);
+    white-space: nowrap;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  .menu-links__item:hover .menu-links__cta {
+    color: var(--color-forest);
+  }
+</style>

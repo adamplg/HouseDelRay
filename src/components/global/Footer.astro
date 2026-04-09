@@ -1,0 +1,166 @@
+---
+import { siteConfig } from '@/data/siteConfig';
+import { getFooterNav } from '@/data/navigation';
+import { useTranslations, type Locale } from '@/i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const nav = getFooterNav(locale);
+const homeHref = locale === 'fr' ? '/fr' : '/';
+---
+<footer class="footer">
+  <div class="footer__inner">
+    <!-- Column 1: Address -->
+    <div class="footer__col footer__col--address">
+      <p class="footer__address">
+        {siteConfig.contact.address}<br />
+        {siteConfig.contact.city}
+      </p>
+      <a href={`mailto:${siteConfig.contact.email}`} class="footer__email">
+        {siteConfig.contact.email}
+        <span class="footer__email-arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- Column 2: Logo -->
+    <div class="footer__col footer__col--logo">
+      <a href={homeHref} class="footer__logo" aria-label="House of Delray">
+        <img src="/images/logo.svg" alt="House of Delray" class="footer__logo-img" />
+        <span class="footer__logo-city">{t('footer.tagline')}</span>
+      </a>
+    </div>
+
+    <!-- Column 3: Nav Links -->
+    <div class="footer__col footer__col--nav">
+      <ul class="footer__nav-list">
+        {nav.stayWithUs.map((item) => (
+          <li>
+            <a href={item.href} class="footer__nav-link">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Column 4: Legal -->
+    <div class="footer__col footer__col--legal">
+      <ul class="footer__nav-list">
+        {nav.legal.map((item) => (
+          <li>
+            <a href={item.href} class="footer__nav-link">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-charcoal);
+    color: var(--color-cream);
+    padding: var(--space-2xl) var(--section-padding-x);
+  }
+
+  .footer__inner {
+    max-width: 1200px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr auto 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+  }
+
+  /* ── Address ── */
+  .footer__address {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+    color: rgba(250, 248, 245, 0.7);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__email {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    color: var(--color-cream);
+    text-decoration: none;
+    letter-spacing: var(--tracking-wide);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  .footer__email:hover {
+    color: var(--color-gold-light);
+  }
+
+  .footer__email-arrow {
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+
+  .footer__email:hover .footer__email-arrow {
+    transform: translateX(3px);
+  }
+
+  /* ── Logo ── */
+  .footer__col--logo {
+    text-align: center;
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    line-height: 1;
+    color: var(--color-cream);
+  }
+
+  .footer__logo-img {
+    height: 1.75rem;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer__logo-city {
+    font-family: var(--font-ui);
+    font-size: 0.5rem;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    margin-top: 4px;
+    color: rgba(250, 248, 245, 0.6);
+  }
+
+  /* ── Nav Lists ── */
+  .footer__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .footer__nav-link {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: rgba(250, 248, 245, 0.7);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  .footer__nav-link:hover {
+    color: var(--color-cream);
+  }
+</style>

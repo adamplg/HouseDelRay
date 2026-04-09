@@ -1,0 +1,208 @@
+---
+import SpeakeasyLayout from '@/layouts/SpeakeasyLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import AnimatedText from '@/components/blocks/AnimatedText.astro';
+import EventCard from '@/components/blocks/EventCard.astro';
+import SpotifyEmbed from '@/components/blocks/SpotifyEmbed.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+---
+<SpeakeasyLayout title="Speakeasy">
+  <PageHero
+    title="Caution Hot Inside"
+    height="full"
+    videoSrc="/video/speakeasy.mp4"
+  >
+    <div class="speakeasy-hero-cta">
+      <Button href="/events" variant="primary" size="md">
+        Browse Upcoming Events
+      </Button>
+    </div>
+  </PageHero>
+
+  <!-- Recent Events -->
+  <section class="recent-events">
+    <Container>
+      <p class="recent-events__label text-ui text-center">Recent Events</p>
+      <div class="recent-events__grid">
+        <div class="recent-events__item">
+          <img src="/images/placeholder.svg" alt="Swingers event" loading="lazy" />
+          <h3>Swingers</h3>
+          <p class="text-caption">SAT, 9/23, 18:00-00:00</p>
+        </div>
+        <div class="recent-events__item">
+          <img src="/images/placeholder.svg" alt="Boiler Room event" loading="lazy" />
+          <h3>Boiler Room</h3>
+          <p class="text-caption">SAT, 9/30, 18:00-00:00</p>
+        </div>
+        <div class="recent-events__item">
+          <img src="/images/placeholder.svg" alt="Kapitan Allnighter event" loading="lazy" />
+          <h3>Kapitan Allnighter</h3>
+          <p class="text-caption">SAT, 10/7, 18:00-00:00</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Animated Text -->
+  <AnimatedText segments={[
+    { text: 'A ' },
+    { text: 'hidden speakeasy-style space', highlight: true },
+    { text: ' beneath the villa, open by ' },
+    { text: 'invitation only.', highlight: true },
+    { text: ' Designed for ' },
+    { text: "Tel Aviv's creative community,", highlight: true },
+    { text: ' it features ' },
+    { text: 'handcrafted cocktails, live music,', highlight: true },
+    { text: ' and ' },
+    { text: 'curated programming.', highlight: true },
+    { text: ' Ideal for ' },
+    { text: 'private events', highlight: true },
+    { text: ' and ' },
+    { text: 'gatherings', highlight: true },
+    { text: ' of up to ' },
+    { text: '70 guests.', highlight: true },
+  ]} />
+
+  <!-- Monthly Events -->
+  <section class="monthly-events">
+    <Container>
+      <p class="monthly-events__label text-ui text-center">September Events</p>
+      <div class="monthly-events__grid">
+        <div class="monthly-events__card">
+          <img src="/images/placeholder.svg" alt="Swingers" loading="lazy" />
+          <h3>Swingers</h3>
+          <p class="monthly-events__date">SAT, 9/23, 18:00-00:00</p>
+          <p class="monthly-events__desc">A rooftop house party. Afrobeats night. Surround Sound, Young Master, Tel Aviv Tower House.</p>
+          <Button href="#rsvp" variant="secondary" size="sm">RSVP</Button>
+        </div>
+        <div class="monthly-events__card">
+          <img src="/images/placeholder.svg" alt="Boiler Room Afterparty" loading="lazy" />
+          <h3>Boiler Room Afterparty</h3>
+          <p class="monthly-events__date">SAT, 9/30, 18:00-00:00</p>
+          <p class="monthly-events__desc">Dive bar in the speakeasy. Quarter & June. Turbo, Ground/floor, Young.</p>
+          <Button href="#rsvp" variant="secondary" size="sm">RSVP</Button>
+        </div>
+        <div class="monthly-events__card">
+          <img src="/images/placeholder.svg" alt="Kapitan Allnighter" loading="lazy" />
+          <h3>Kapitan Allnighter</h3>
+          <p class="monthly-events__date">SAT, 10/7, 18:00-00:00</p>
+          <p class="monthly-events__desc">Minimal in the speakeasy. Surround Sound, Young Master, Tel Aviv Residence.</p>
+          <Button href="#rsvp" variant="secondary" size="sm">RSVP</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Spotify -->
+  <SpotifyEmbed theme="dark" />
+</SpeakeasyLayout>
+
+<style>
+  :global(.hero--blur::before) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+  .speakeasy-hero-cta {
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Recent Events ── */
+  .recent-events {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .recent-events__label {
+    margin-bottom: var(--space-xl);
+    color: var(--color-warm-gray);
+  }
+
+  .recent-events__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .recent-events__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .recent-events__item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin-bottom: var(--space-sm);
+  }
+
+  .recent-events__item h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-cream);
+    margin-bottom: var(--space-xs);
+  }
+
+  /* ── Monthly Events ── */
+  .monthly-events {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .monthly-events__label {
+    margin-bottom: var(--space-xl);
+    color: var(--color-warm-gray);
+  }
+
+  .monthly-events__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .monthly-events__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .monthly-events__card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin-bottom: var(--space-md);
+  }
+
+  .monthly-events__card h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-cream);
+    margin-bottom: var(--space-sm);
+  }
+
+  .monthly-events__date {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    color: var(--color-magenta);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-sm);
+  }
+
+  .monthly-events__desc {
+    font-size: var(--text-sm);
+    color: rgba(250, 248, 245, 0.7);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-md);
+  }
+</style>

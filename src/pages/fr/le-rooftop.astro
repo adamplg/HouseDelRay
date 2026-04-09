@@ -1,0 +1,139 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import MenuLinkLines from '@/components/blocks/MenuLinkLines.astro';
+import OpeningHours from '@/components/blocks/OpeningHours.astro';
+import EventCard from '@/components/blocks/EventCard.astro';
+import { getRooftopHours, restaurantContact } from '@/data/openingHours';
+---
+<PageLayout title="Le Rooftop" headerMode="transparent" locale="fr">
+  <PageHero title="Le Rooftop" height="tall" backgroundImage="/images/rooftop-dinner.png" />
+
+  <!-- Description -->
+  <section class="rooftop-desc">
+    <Container width="narrow">
+      <p class="rooftop-desc__text text-center">
+        Un espace décontracté et raffiné avec une vue panoramique sur la ville. Le rooftop
+        du House of Delray est ouvert aux résidents comme aux habitants du quartier pour des
+        cocktails au coucher du soleil, des vins nature et des assiettes à partager. Idéal
+        pour l'heure de l'apéritivo, le brunch du week-end et les événements privés jusqu'à
+        49 convives. À la tombée de la nuit, place aux DJ sets et aux soirées décontractées
+        sous les étoiles.
+      </p>
+      <div class="rooftop-desc__cta text-center">
+        <Button href="#reserve" variant="secondary" size="md">
+          Réserver un Événement Privé
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Rooftop Image -->
+  <section class="rooftop-image">
+    <img src="/images/rooftop-dinner.png" alt="Dîner sur le rooftop du House of Delray" loading="lazy" />
+  </section>
+
+  <!-- Events -->
+  <section class="rooftop-events">
+    <Container>
+      <h2 class="text-section-title">Événements de Septembre</h2>
+      <div class="rooftop-events__grid">
+        <EventCard
+          locale="fr"
+          title="DJ Set au Coucher du Soleil"
+          description="Clôturez une journée de rêve. Spiral desert Young Master Tel Aviv's Tower House."
+          date="SAM, 3/9, 18h00-00h00"
+          layout="vertical"
+        />
+        <EventCard
+          locale="fr"
+          title="Vinyl Therapy #4"
+          description="Laissez-vous porter par des sonorités envoûtantes et des harmoniques acid recondites. No filter, Groundfloor, Young."
+          date="SAM, 11/4, 18h00-00h00"
+          layout="vertical"
+        />
+        <EventCard
+          locale="fr"
+          title="Soirée Saint-Valentin"
+          description="Savourez des sonorités délicates accompagnées de vins d'exception, des DJ sets Anti-Bar et le Roast Point."
+          date="SAM, 12/4, 18h00-00h00"
+          layout="vertical"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Menu Links -->
+  <section class="rooftop-menus">
+    <Container>
+      <MenuLinkLines locale="fr" menus={[
+        { title: 'Petit-Déjeuner & Brunch', link: '#menu' },
+        { title: 'Apéritivo', link: '#menu' },
+      ]} />
+    </Container>
+  </section>
+
+  <!-- Opening Hours -->
+  <section class="rooftop-hours">
+    <Container>
+      <OpeningHours
+        locale="fr"
+        hours={getRooftopHours('fr')}
+        title="Horaires d'Ouverture"
+        email={restaurantContact.email}
+        phone={restaurantContact.phone}
+        address={restaurantContact.address}
+        city={restaurantContact.city}
+      />
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .rooftop-desc {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .rooftop-desc__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .rooftop-image img {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+  }
+
+  .rooftop-events {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .rooftop-events__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .rooftop-events__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .rooftop-menus {
+    padding: 0 0 var(--space-xl);
+  }
+
+  .rooftop-hours {
+    padding: 0 0 var(--section-padding-y);
+  }
+</style>

@@ -1,0 +1,119 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import ThumbnailGrid from '@/components/blocks/ThumbnailGrid.astro';
+import Accordion from '@/components/blocks/Accordion.astro';
+import FullWidthImageText from '@/components/blocks/FullWidthImageText.astro';
+---
+<PageLayout title="Rooms & Suites" headerMode="transparent">
+  <PageHero title="Rooms & Suites" height="tall" backgroundImage="/images/breakfast-bed.png" />
+
+  <!-- Room Intro -->
+  <section class="room-intro">
+    <Container width="narrow">
+      <p class="room-intro__text text-center">
+        We've got you covered for your best night's sleep with comfy mattresses
+        and blackout blinds to help you sleep well, and you'll find your very own
+        bathroom accessories too. Plan to get up ready for the next
+        morning. Ready for a day (and night) of exploring everything Tel Aviv
+        has to offer.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Rooms Grid -->
+  <section class="rooms">
+    <Container>
+      <ThumbnailGrid
+        items={[
+          {
+            title: 'Kerem Petite',
+            subtitle: '20 SQM / Balcony',
+            description: 'The most intimate of our Kerem HaTeimanim rooms. With an in-room bathtub, ideal for a refreshing pick-me-up after a day of exploring the city.',
+            ctaText: 'Discover More',
+            link: '/sleep',
+          },
+          {
+            title: 'Casual Core',
+            subtitle: '25 SQM / Courtyard',
+            description: 'The ideal room for a casual Tel Aviv escape. With plenty of natural light, a cozy corner for reading, and everything you need to recharge.',
+            ctaText: 'Discover More',
+            link: '/sleep',
+          },
+          {
+            title: 'The Delray Loft Suite',
+            subtitle: '40 SQM / Loft Space',
+            description: 'Our signature suite with a loft-style layout, this generous space is designed for indulgence. The perfect retreat for the discerning guest.',
+            ctaText: 'Discover More',
+            link: '/sleep',
+          },
+        ]}
+        columns={2}
+      />
+    </Container>
+  </section>
+
+  <!-- What's Included Accordion -->
+  <section class="whats-included">
+    <Container>
+      <Accordion
+        items={[
+          { title: "What comes as standard?", content: "All rooms include luxury bed linens, blackout curtains, rainfall shower, premium toiletries, high-speed WiFi, smart TV, Nespresso machine, mini bar, daily housekeeping, and 24-hour concierge service." },
+          { title: "Amenities at House of Delray", content: "Guests enjoy access to the rooftop terrace, restaurant and bar, complimentary breakfast, bicycle rental, beach accessories, and our curated local experience guide." },
+        ]}
+      />
+    </Container>
+  </section>
+
+  <!-- Take Over The Entire House -->
+  <FullWidthImageText
+    title="Take Over The Entire House"
+    text="More than a stay, this is your private invitation into the world of Delray: intimate, immersive, and impeccably curated. Every detail is designed for vibrant celebrations, effortless, and unforgettable pleasure."
+    ctaText="Get Details"
+    ctaLink="/private-buyout"
+  />
+
+  <!-- Packages -->
+  <section class="packages-section">
+    <Container>
+      <ThumbnailGrid
+        items={[
+          { title: 'The Essential', subtitle: 'Starting at...', description: 'Simply beautiful in classic Delray style. Our purest, most effortless rooms include breakfast, daily housekeeping, and artisan bath products in a cozy, character-filled space.', ctaText: 'Get Details', link: '/private-buyout' },
+          { title: 'The Elevated', subtitle: 'Elevated...', description: 'A home-away-from-home beyond the usual. Live as the locals do with rooftop access, our hand-picked Tel Aviv insider guide and perks — art, culture, and personality.', ctaText: 'Get Details', link: '/private-buyout' },
+          { title: 'The Signature', subtitle: 'Deep Dive', description: 'Full culture full-throttle. This stay is more of a curated Tel Aviv art, photography, innovation, and non-touristy underground or "just because" moments to revisit exclusives.', ctaText: 'Get Details', link: '/private-buyout' },
+          { title: 'The Full Monty', subtitle: 'All Out Fun', description: 'Total immersion in Tel Aviv, on our terms and still hand made. Like all Delray packages are. Breakfast is just the start of an all-access ride into a world of exclusive adventures.', ctaText: 'Get Details', link: '/private-buyout' },
+        ]}
+        columns={2}
+      />
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .room-intro {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .room-intro__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  .rooms {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .whats-included {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .packages-section {
+    padding: var(--section-padding-y) 0;
+  }
+</style>

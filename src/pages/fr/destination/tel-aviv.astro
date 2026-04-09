@@ -1,0 +1,70 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import ThumbnailGrid from '@/components/blocks/ThumbnailGrid.astro';
+import Breadcrumbs from '@/components/global/Breadcrumbs.astro';
+---
+<PageLayout title="Tel Aviv" headerMode="transparent" locale="fr">
+  <PageHero
+    title="Tel Aviv"
+    subtitle="Shalom,"
+    height="tall"
+  />
+
+  <section class="destination">
+    <Container>
+      <Breadcrumbs crumbs={[
+        { label: 'Tel Aviv', href: '/fr/destination/tel-aviv' },
+        { label: 'Jaffa' },
+      ]} />
+
+      <h2 class="destination__heading text-section-title">Tel Aviv House</h2>
+
+      <ThumbnailGrid
+        items={[
+          {
+            title: 'House Of Delray',
+            description: "Kerem HaTeimanim est l'un des quartiers les plus singuliers de Tel Aviv — un mélange vibrant de charme ancien et d'énergie nouvelle, à deux pas de la plage et du marché du Carmel. Du soleil, des épices et ce chaos délicieux qui fait tout le sel de la ville.",
+            ctaText: 'En Savoir Plus',
+            link: '/fr/notre-maison',
+          },
+          {
+            title: 'Delray Studios',
+            description: "La Ville Blanche est l'un des joyaux les plus emblématiques de Tel Aviv — où l'élégance Bauhaus, les boulevards ombragés et la culture des cafés se fondent dans un rythme urbain intemporel.",
+            ctaText: 'En Savoir Plus',
+            link: '#',
+            comingSoon: true,
+          },
+          {
+            title: 'Delray By The Sea',
+            description: "Jaffa, c'est là où l'histoire millénaire rencontre une énergie résolument contemporaine. Avec ses ruelles pavées, ses marchés animés et son port face à la mer, l'endroit offre une atmosphère unique, entre charme ancestral et souffle nouveau.",
+            ctaText: 'En Savoir Plus',
+            link: '#',
+            comingSoon: true,
+          },
+          {
+            title: 'Delray Spa',
+            description: "Delray Spa est une parenthèse de sérénité au cœur de la ville — où le luxe contemporain s'allie à une détente intemporelle. Intérieurs apaisants, soins holistiques et un art de vivre tout en douceur, pour ralentir, se ressourcer et se reconnecter — corps et esprit.",
+            ctaText: 'En Savoir Plus',
+            link: '#',
+            comingSoon: true,
+          },
+        ]}
+        columns={2}
+        locale="fr"
+      />
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .destination {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .destination__heading {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+</style>

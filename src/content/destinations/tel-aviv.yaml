@@ -1,0 +1,18 @@
+city: Tel Aviv
+heroImage: /images/placeholder.svg
+properties:
+  - name: House of Delray
+    image: /images/placeholder.svg
+    link: /our-house
+  - name: Delray Studios
+    image: /images/placeholder.svg
+    link: "#"
+    comingSoon: true
+  - name: Delray By The Sea
+    image: /images/placeholder.svg
+    link: "#"
+    comingSoon: true
+  - name: Delray Spa
+    image: /images/placeholder.svg
+    link: "#"
+    comingSoon: true

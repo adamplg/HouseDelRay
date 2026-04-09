@@ -1,0 +1,159 @@
+---
+import MagazineLayout from '@/layouts/MagazineLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import ArticleCard from '@/components/blocks/ArticleCard.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+---
+<MagazineLayout title="Magazine">
+  <section class="magazine-header">
+    <Container>
+      <SectionHeading>Magazine</SectionHeading>
+    </Container>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="magazine-featured">
+    <Container>
+      <ArticleCard
+        title="A Hidden Gem Above the City: The Delray Loft Suite"
+        excerpt="Behind the scenes, above rooftops, and inside Delray's iconic, effervescent rooms. This room (one of our eight special rooms) is a real nook overlooking everything, and although you'd probably sleep through it, some of those views are worth staying up for."
+        date="Art & Culture"
+        tags={['Art & Culture', 'Interiors']}
+        image="/images/placeholder.svg"
+        link="/magazine/hidden-gem"
+        variant="featured"
+      />
+    </Container>
+  </section>
+
+  <!-- Article Grid -->
+  <section class="magazine-grid">
+    <Container>
+      <div class="magazine-grid__items">
+        <ArticleCard
+          title="Designed for the Curious and the Cultured"
+          tags={['Art', 'Culture']}
+          date="Oct 12th, 10:00AM"
+          excerpt="Close by, straightforward comfort. Spirited Desert. Young Master, Tel Aviv. There's always."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Five Tables Worth Dressing Up For"
+          tags={['Food', 'Restaurants']}
+          date="Oct 12th, 10:00AM"
+          excerpt="Close out the the rounds of sweet sounds and recondite and food blends, Anti-Bar DJs and Roast Point."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Inside Tel Aviv's Hidden Galleries"
+          tags={['Art', 'Design']}
+          date="Oct 12th, 10:00AM"
+          excerpt="Close by, straightforward comfort. Spirited Desert. Young Master, Tel Aviv. There's always."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Vinyl Therapy #4"
+          tags={['Music', 'Events']}
+          date="Oct 12th, 10:00AM"
+          excerpt="Easy does it in the sounds of sweet sounds and recondite and fluid blends, Anti-Bar DJs and that. Young."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Sunset DJ Set"
+          tags={['Music', 'Rooftop']}
+          date="Oct 12th, 10:00AM"
+          excerpt="Close by, straightforward comfort. Spirited Desert. Young Master, Tel Aviv. Roast Point."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Valentine Special"
+          tags={['Events', 'Specials']}
+          date="Oct 12th, 10:00AM"
+          excerpt="Deep dive into the rounds of sweet sounds and recondite and fluid blends, Anti-Bar DJs and that Point."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Second Featured -->
+  <section class="magazine-featured">
+    <Container>
+      <ArticleCard
+        title="Summer Never Really Ends Here"
+        excerpt="Maybe he understands it, or what it means. Profoundly special, effortlessly made. Pleasures are all that we're after — and let us know that when it's warm here, and wherever even night, and sea enough beach for spend them."
+        date="EP's & Marble / 11,810 EAD"
+        tags={['Lifestyle']}
+        image="/images/placeholder.svg"
+        link="/magazine/hidden-gem"
+        variant="featured"
+      />
+    </Container>
+  </section>
+
+  <!-- More Articles -->
+  <section class="magazine-grid">
+    <Container>
+      <div class="magazine-grid__items">
+        <ArticleCard
+          title="Valentine Special"
+          tags={['Events']}
+          date="EP / 11k, TIME 5min"
+          excerpt="Deep dive into the rounds of sweet sounds and recondite and fluid blends, Anti-Bar DJs and that Point."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Valentine Special"
+          tags={['Events']}
+          date="EP 11k, TIME 5min"
+          excerpt="Close out the rounds of sweet sounds and recondite and food blends, Anti-Bar DJs and Roast Point."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Vinyl Therapy #4"
+          tags={['Music']}
+          date="EP / 11k, Streamed"
+          excerpt="Deep dive into the rounds of sweet sounds and recondite, and fluid blends, Anti-Bar DJs and that. Young."
+          image="/images/placeholder.svg"
+          link="/magazine/hidden-gem"
+        />
+      </div>
+    </Container>
+  </section>
+</MagazineLayout>
+
+<style>
+  .magazine-header {
+    padding-top: calc(80px + var(--space-2xl));
+    padding-bottom: var(--space-lg);
+  }
+
+  .magazine-featured {
+    padding: var(--space-xl) 0 var(--space-2xl);
+  }
+
+  .magazine-grid {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .magazine-grid__items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .magazine-grid__items {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+  }
+</style>

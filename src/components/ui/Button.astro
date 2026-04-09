@@ -1,0 +1,135 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+<Tag
+  class:list={['btn', `btn--${variant}`, `btn--${size}`, className]}
+  {...href ? { href } : { type }}
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-family: var(--font-ui);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) var(--ease-default),
+      border-color var(--duration-fast) var(--ease-default),
+      color var(--duration-fast) var(--ease-default);
+    white-space: nowrap;
+  }
+
+  /* ── Sizes ── */
+  .btn--sm {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-xs);
+  }
+
+  .btn--md {
+    padding: 0.75rem 1.75rem;
+    font-size: var(--text-sm);
+  }
+
+  .btn--lg {
+    padding: 1rem 2.25rem;
+    font-size: var(--text-sm);
+  }
+
+  /* ── Tier 1: Primary (BOOK NOW) ── */
+  .btn--primary {
+    background-color: var(--color-forest);
+    color: var(--color-white);
+    border-color: var(--color-forest);
+    font-weight: 600;
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-forest-light);
+    border-color: var(--color-forest-light);
+  }
+
+  /* ── Tier 2: Secondary (Reserve, Get Details, RSVP) ── */
+  .btn--secondary {
+    background-color: transparent;
+    color: var(--color-charcoal);
+    border-color: var(--color-charcoal);
+    font-weight: 400;
+  }
+
+  .btn--secondary:hover {
+    background-color: var(--color-charcoal);
+    color: var(--color-cream);
+  }
+
+  /* ── Outline variant ── */
+  .btn--outline {
+    background-color: transparent;
+    color: var(--color-charcoal);
+    border-color: var(--color-mauve-200);
+    font-weight: 400;
+  }
+
+  .btn--outline:hover {
+    border-color: var(--color-charcoal);
+  }
+
+  /* ── Tier 3: Ghost (Discover More, Read More) ── */
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--color-charcoal);
+    border-color: transparent;
+    font-weight: 400;
+    padding-inline: 0;
+    position: relative;
+  }
+
+  .btn--ghost::after {
+    content: '→';
+    margin-left: var(--space-xs);
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+
+  .btn--ghost:hover::after {
+    transform: translateX(4px);
+  }
+
+  /* ── Dark theme overrides ── */
+  :global(.theme-speakeasy) .btn--secondary {
+    color: var(--color-cream);
+    border-color: var(--color-cream);
+  }
+
+  :global(.theme-speakeasy) .btn--secondary:hover {
+    background-color: var(--color-cream);
+    color: var(--color-night);
+  }
+
+  :global(.theme-speakeasy) .btn--ghost {
+    color: var(--color-magenta);
+  }
+</style>

@@ -1,0 +1,135 @@
+---
+interface AccordionItemData {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: AccordionItemData[];
+  columns?: 1 | 2;
+  class?: string;
+}
+
+const { items, columns = 1, class: className = '' } = Astro.props;
+---
+<div class:list={['accordion', `accordion--cols-${columns}`, className]}>
+  {items.map((item) => (
+    <div class="accordion__item">
+      <button
+        class="accordion__trigger"
+        aria-expanded="false"
+        data-accordion-trigger
+      >
+        <span class="accordion__title">{item.title}</span>
+        <span class="accordion__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="10" y1="4" x2="10" y2="16" class="accordion__icon-v" />
+            <line x1="4" y1="10" x2="16" y2="10" />
+          </svg>
+        </span>
+      </button>
+      <div class="accordion__panel" aria-hidden="true" data-accordion-panel>
+        <div class="accordion__content">
+          <p>{item.content}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .accordion {
+    width: 100%;
+  }
+
+  .accordion--cols-2 {
+    columns: 1;
+  }
+
+  @media (min-width: 768px) {
+    .accordion--cols-2 {
+      columns: 2;
+      column-gap: var(--space-2xl);
+    }
+  }
+
+  .accordion__item {
+    border-bottom: var(--border-thin);
+    break-inside: avoid;
+  }
+
+  .accordion__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-lg) 0;
+    text-align: left;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+  }
+
+  .accordion__title {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-charcoal);
+  }
+
+  .accordion__icon {
+    flex-shrink: 0;
+    color: var(--color-warm-gray);
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+
+  .accordion__icon-v {
+    transition: transform var(--duration-fast) var(--ease-default);
+    transform-origin: center;
+  }
+
+  .accordion__trigger[aria-expanded="true"] .accordion__icon-v {
+    transform: scaleY(0);
+  }
+
+  .accordion__panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--duration-normal) var(--ease-default);
+  }
+
+  .accordion__content {
+    padding-bottom: var(--space-lg);
+  }
+
+  .accordion__content p {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal-light);
+  }
+</style>
+
+<script>
+  function initAccordions() {
+    document.querySelectorAll('[data-accordion-trigger]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        const panel = trigger.nextElementSibling as HTMLElement;
+
+        trigger.setAttribute('aria-expanded', String(!expanded));
+        panel.setAttribute('aria-hidden', String(expanded));
+
+        if (!expanded) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        } else {
+          panel.style.maxHeight = '0';
+        }
+      });
+    });
+  }
+
+  initAccordions();
+  document.addEventListener('astro:after-swap', initAccordions);
+</script>

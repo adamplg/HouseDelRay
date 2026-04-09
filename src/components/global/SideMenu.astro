@@ -1,0 +1,282 @@
+---
+import { getSideMenuNav } from '@/data/navigation';
+import { siteConfig, getSiteDescription } from '@/data/siteConfig';
+import { useTranslations, type Locale } from '@/i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const nav = getSideMenuNav(locale);
+const description = getSiteDescription(locale);
+---
+<div class="side-menu" data-side-menu aria-hidden="true">
+  <!-- Backdrop -->
+  <div class="side-menu__backdrop" data-menu-close></div>
+
+  <!-- Panel -->
+  <nav class="side-menu__panel" aria-label={locale === 'fr' ? 'Navigation complète' : 'Full navigation'}>
+    <button
+      class="side-menu__close"
+      aria-label={locale === 'fr' ? 'Fermer le menu' : 'Close menu'}
+      data-menu-close
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="2" y1="2" x2="18" y2="18" />
+        <line x1="18" y1="2" x2="2" y2="18" />
+      </svg>
+    </button>
+
+    <div class="side-menu__content">
+      <div class="side-menu__nav-columns">
+        {nav.map((section) => (
+          <div class="side-menu__section">
+            <a href={section.href} class="side-menu__section-title">
+              {section.label}
+            </a>
+            {section.children && (
+              <ul class="side-menu__sub-list">
+                {section.children.map((child) => (
+                  <li>
+                    <a href={child.href} class="side-menu__sub-link">
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="side-menu__intro">
+        <p>{description}</p>
+        <a href={siteConfig.bookingUrl} class="side-menu__book-btn text-ui">
+          {t('sideMenu.bookNow')}
+        </a>
+      </div>
+
+      <div class="side-menu__image">
+        <img src="/images/speakeasy-bar.png" alt={t('sideMenu.imageAlt')} loading="lazy" />
+      </div>
+    </div>
+  </nav>
+</div>
+
+<style>
+  .side-menu {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-menu);
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .side-menu.is-open {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  /* ── Backdrop ── */
+  .side-menu__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(44, 41, 38, 0.5);
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-default);
+  }
+
+  .side-menu.is-open .side-menu__backdrop {
+    opacity: 1;
+  }
+
+  /* ── Panel ── */
+  .side-menu__panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(90vw, 900px);
+    background-color: var(--color-cream);
+    transform: translateX(-100%);
+    transition: transform var(--duration-normal) var(--ease-default);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .side-menu.is-open .side-menu__panel {
+    transform: translateX(0);
+  }
+
+  /* ── Close Button ── */
+  .side-menu__close {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-lg);
+    padding: var(--space-xs);
+    color: var(--color-charcoal);
+    z-index: 1;
+  }
+
+  /* ── Content ── */
+  .side-menu__content {
+    padding: var(--space-4xl) var(--section-padding-x) var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .side-menu__content {
+      flex-direction: row;
+      gap: var(--space-3xl);
+    }
+  }
+
+  /* ── Nav Columns ── */
+  .side-menu__nav-columns {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .side-menu__nav-columns {
+      flex-direction: row;
+      gap: var(--space-3xl);
+    }
+  }
+
+  .side-menu__section-title {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-charcoal);
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-md);
+  }
+
+  .side-menu__sub-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .side-menu__sub-link {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-charcoal-light);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+
+  .side-menu__sub-link:hover {
+    color: var(--color-forest);
+  }
+
+  /* ── Intro Text ── */
+  .side-menu__intro {
+    max-width: 280px;
+  }
+
+  .side-menu__intro p {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-charcoal-light);
+    margin-bottom: var(--space-lg);
+  }
+
+  /* ── Image ── */
+  .side-menu__image {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .side-menu__image {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .side-menu__image img {
+      width: 200px;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+  }
+
+  .side-menu__book-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.5rem;
+    background-color: var(--color-forest);
+    color: var(--color-white);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: background-color var(--duration-fast) var(--ease-default);
+  }
+
+  .side-menu__book-btn:hover {
+    background-color: var(--color-forest-light);
+  }
+
+  /* ── Reduced Motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .side-menu__panel,
+    .side-menu__backdrop {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function initSideMenu() {
+    const menu = document.querySelector('[data-side-menu]') as HTMLElement | null;
+    if (!menu) return;
+
+    const toggleBtns = document.querySelectorAll('[data-menu-toggle]');
+    const closeBtns = document.querySelectorAll('[data-menu-close]');
+
+    function open() {
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('menu-open');
+      // Update hamburger aria
+      toggleBtns.forEach((btn) => btn.setAttribute('aria-expanded', 'true'));
+    }
+
+    function close() {
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
+      toggleBtns.forEach((btn) => btn.setAttribute('aria-expanded', 'false'));
+    }
+
+    toggleBtns.forEach((btn) => btn.addEventListener('click', open));
+    closeBtns.forEach((btn) => btn.addEventListener('click', close));
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        close();
+      }
+    });
+
+    // Close when navigating via links inside the menu
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', close);
+    });
+  }
+
+  initSideMenu();
+  document.addEventListener('astro:after-swap', initSideMenu);
+</script>

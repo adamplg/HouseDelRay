@@ -1,0 +1,69 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import ThumbnailGrid from '@/components/blocks/ThumbnailGrid.astro';
+import Breadcrumbs from '@/components/global/Breadcrumbs.astro';
+---
+<PageLayout title="Tel Aviv" headerMode="transparent">
+  <PageHero
+    title="Tel Aviv"
+    subtitle="Shalom,"
+    height="tall"
+  />
+
+  <section class="destination">
+    <Container>
+      <Breadcrumbs crumbs={[
+        { label: 'Tel Aviv', href: '/destination/tel-aviv' },
+        { label: 'Jaffa' },
+      ]} />
+
+      <h2 class="destination__heading text-section-title">Tel Aviv House</h2>
+
+      <ThumbnailGrid
+        items={[
+          {
+            title: 'House Of Delray',
+            description: "Kerem HaTeimanim is one of Tel Aviv's most standing out rooms — a soulful blend of old school charm and new-wave energy, just steps from the beach and Carmel Market. It's all sun, spice, and the best kind of chaos.",
+            ctaText: 'Discover More',
+            link: '/our-house',
+          },
+          {
+            title: 'Delray Studios',
+            description: "The White City is one of Tel Aviv's most iconic and effervescent and across — where Bauhaus elegance, leafy boulevards, and cafe culture comes together in a timeless urban rhythm.",
+            ctaText: 'Discover More',
+            link: '#',
+            comingSoon: true,
+          },
+          {
+            title: 'Delray By The Sea',
+            description: "Jaffa is the place where ancient history meets a vibrant, contemporary rhythm. With its stone alleys, lively markets, and a bustling port overlooking the sea, it offers a unique atmosphere that blends timeless charm with fresh energy.",
+            ctaText: 'Discover More',
+            link: '#',
+            comingSoon: true,
+          },
+          {
+            title: 'Delray Spa',
+            description: "Delray Spa is a serene escape tucked into the heart of the city — where modern luxury meets timeless relaxation. With calming interiors, holistic treatments, and an effortless sense of ease, it is a place to slow down, recharge, and reconnect — body and mind.",
+            ctaText: 'Discover More',
+            link: '#',
+            comingSoon: true,
+          },
+        ]}
+        columns={2}
+      />
+    </Container>
+  </section>
+</PageLayout>
+
+<style>
+  .destination {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .destination__heading {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+</style>

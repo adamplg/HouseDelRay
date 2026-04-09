@@ -1,0 +1,221 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import OpeningHours from '@/components/blocks/OpeningHours.astro';
+import MenuLinkLines from '@/components/blocks/MenuLinkLines.astro';
+import FullWidthImageText from '@/components/blocks/FullWidthImageText.astro';
+import { getRestaurantHours, restaurantContact } from '@/data/openingHours';
+---
+<PageLayout title="Manger & Boire" headerMode="transparent" locale="fr">
+  <PageHero title="Manger & Boire" height="tall" backgroundImage="/images/food-burrata.png" class="hero--blur" />
+
+  <!-- Restaurant Description -->
+  <section class="restaurant-desc">
+    <Container width="narrow">
+      <p class="restaurant-desc__text text-center">
+        Installé au rez-de-chaussée et ouvert sur un patio luxuriant, le Restaurant Delray
+        propose une cuisine méditerranéenne moderne aux influences israéliennes. Les convives
+        savourent des petits-déjeuners languissants, des déjeuners vibrants et des dîners
+        animés dans un cadre qui passe subtilement de la lumière du jour à la lueur des bougies.
+        En réunissant les deux espaces, le lieu accueille jusqu'à 80 convives.
+      </p>
+      <div class="restaurant-desc__cta text-center">
+        <Button href="#reserve" variant="secondary" size="md">
+          Réserver une Table
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Opening Hours -->
+  <section class="hours-section">
+    <Container>
+      <OpeningHours
+        locale="fr"
+        hours={getRestaurantHours('fr')}
+        email={restaurantContact.email}
+        phone={restaurantContact.phone}
+        address={restaurantContact.address}
+        city={restaurantContact.city}
+      />
+    </Container>
+  </section>
+
+  <!-- Menu Links -->
+  <section class="menus-section">
+    <Container>
+      <MenuLinkLines locale="fr" menus={[
+        { title: 'Petit-Déjeuner & Brunch', link: '#menu' },
+        { title: 'Apéritivo', link: '#menu', linkText: 'Voir la Carte' },
+        { title: 'Dîner', link: '#menu' },
+      ]} />
+    </Container>
+  </section>
+
+  <!-- The Rooftop Teaser -->
+  <section class="rooftop-teaser">
+    <Container>
+      <div class="rooftop-teaser__grid">
+        <div class="rooftop-teaser__text">
+          <h2 class="rooftop-teaser__title text-section-title">Le Rooftop</h2>
+          <p>
+            Un espace décontracté et raffiné avec une vue panoramique sur la ville. Le
+            rooftop du House of Delray est ouvert aux résidents comme aux habitants du
+            quartier pour des cocktails au coucher du soleil, des vins nature et des
+            assiettes à partager. Idéal pour l'heure de l'apéritivo, le brunch du
+            week-end et les événements privés jusqu'à 40 convives. À la tombée de la
+            nuit, place aux DJ sets et aux soirées décontractées sous les étoiles.
+          </p>
+          <Button href="/fr/le-rooftop" variant="secondary" size="md">
+            Voir le Rooftop
+          </Button>
+        </div>
+        <div class="rooftop-teaser__image img-hover-zoom">
+          <img src="/images/rooftop-dinner.png" alt="Le Rooftop" loading="lazy" />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Speakeasy Teaser -->
+  <section class="speakeasy-teaser">
+    <div class="speakeasy-teaser__bg">
+      <Container>
+        <div class="speakeasy-teaser__grid">
+          <div class="speakeasy-teaser__image img-hover-zoom">
+            <img src="/images/speakeasy-bar.png" alt="Le Speakeasy" loading="lazy" />
+          </div>
+          <div class="speakeasy-teaser__content">
+            <h2 class="speakeasy-teaser__title text-section-title">Speakeasy</h2>
+            <p>
+              Un espace secret niché sous la villa, accessible sur invitation
+              uniquement. Pensé pour la communauté créative de Tel Aviv, il
+              propose des cocktails artisanaux, de la musique live et une
+              programmation sur mesure. L'endroit rêvé pour des événements
+              privés et des réceptions jusqu'à 70 convives.
+            </p>
+            <Button href="/fr/speakeasy" variant="secondary" size="md">
+              En Savoir Plus
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  :global(.hero--blur::before) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+  .restaurant-desc {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .restaurant-desc__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hours-section {
+    padding: 0 0 var(--space-xl);
+  }
+
+  .menus-section {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .rooftop-teaser {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .rooftop-teaser__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .rooftop-teaser__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+  }
+
+  .rooftop-teaser__title {
+    margin-bottom: var(--space-lg);
+  }
+
+  .rooftop-teaser__text p {
+    margin-bottom: var(--space-xl);
+    line-height: var(--leading-relaxed);
+  }
+
+  .rooftop-teaser__image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .speakeasy-teaser__bg {
+    background-color: #000;
+    padding: var(--space-4xl) 0;
+    color: var(--color-cream);
+  }
+
+  .speakeasy-teaser__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .speakeasy-teaser__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+  }
+
+  .speakeasy-teaser__image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .speakeasy-teaser__title {
+    color: var(--color-cream);
+    margin-bottom: var(--space-lg);
+  }
+
+  .speakeasy-teaser__content p {
+    color: rgba(250, 248, 245, 0.85);
+    margin-bottom: var(--space-xl);
+    line-height: var(--leading-relaxed);
+  }
+
+  .speakeasy-teaser__content :global(.btn--secondary) {
+    color: var(--color-cream);
+    border-color: var(--color-cream);
+  }
+
+  .speakeasy-teaser__content :global(.btn--secondary:hover) {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+  }
+</style>

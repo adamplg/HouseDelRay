@@ -1,0 +1,138 @@
+---
+import MagazineLayout from '@/layouts/MagazineLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import ArticleCard from '@/components/blocks/ArticleCard.astro';
+---
+<MagazineLayout title="La Vie Nocturne de TLV : Cinq Speakeasies Cachés" locale="fr">
+  <!-- Article Header -->
+  <section class="article-header">
+    <img src="/images/placeholder.svg" alt="Speakeasies cachés" class="article-header__image" loading="eager" />
+  </section>
+
+  <!-- Article Content -->
+  <article class="article-body">
+    <Container width="narrow">
+      <div class="article-meta">
+        <span class="article-meta__date">Mercredi 20 avril 2027</span>
+      </div>
+
+      <h1 class="article-title">La Vie Nocturne de TLV : Cinq Speakeasies Cachés</h1>
+
+      <p class="article-subtitle">
+        Quelqu'un a dit speakeasy ? Ces cinq bars à cocktails secrets regorgent de plaisirs dignes de la Prohibition
+      </p>
+
+      <div class="prose">
+        <p>
+          Chut. Ne le répétez à personne, mais nous avons déniché les cinq meilleurs speakeasies de Tel Aviv — ces bars clandestins où l'art du cocktail se pratique comme une religion secrète. Ici, pas d'enseigne tapageuse ni de file d'attente sur le trottoir. Il faut connaître la bonne porte, le bon mot de passe, parfois même le bon regard. Quand la scène des bars classiques vous lasse, quand vous cherchez cette pointe d'interdit qui transforme une soirée ordinaire en aventure, les speakeasies de TLV sont la réponse. Une culture du cocktail aussi exigeante qu'enivrante, dans des décors qui semblent tout droit sortis d'un roman de Fitzgerald.
+        </p>
+
+        <h2>1. Butler</h2>
+        <p>
+          Niché dans les entrailles du restaurant Dallal, Butler est un cabinet de curiosités liquides. Le bar tient dans une seule pièce — et c'est précisément ce qui fait son charme. Les murs sont tapissés de gravures d'époque, de porte-clefs en laiton et d'objets chinés dont personne ne saurait retracer l'origine. On s'installe sur un tabouret en cuir patiné, on commande à voix basse, et la magie opère. Ici, pas de cocktails spectaculaires dressés comme des pièces montées : la philosophie de Butler, c'est la pureté du geste. Un verre, une recette maîtrisée, un silence respectueux. Leur « Coffee Cocktail » — un assemblage d'espresso italien, de liqueur de noisette et d'un trait de douceur insoupçonnée — vaut à lui seul le détour. Quant au « Harakiri », derrière son nom martial se cache un équilibre délicat de saveurs umami et d'agrumes fumés qui désarme les palais les plus blasés. On vient chez Butler pour se perdre un vendredi soir et se retrouver, deux heures plus tard, avec la certitude d'avoir vécu quelque chose de rare.
+        </p>
+
+        <img src="/images/placeholder.svg" alt="Intérieur d'un speakeasy" />
+        <p class="text-caption text-center">Un bar à cocktails secret</p>
+
+        <h2>2. Jasper John's</h2>
+        <p>
+          Sur Dizengoff, où les bars à cocktails fleurissent comme les bougainvilliers en avril, Jasper John's a choisi la discrétion. Pas de façade voyante, à peine un signe — il faut le vouloir pour le trouver, et c'est justement ce qui rend l'arrivée si savoureuse. À l'intérieur, quelques fauteuils profonds, une lumière ambrée, et une carte de cocktails aux noms évocateurs : « Plan Aperol », « Black Magic », ou encore un mocktail si réussi qu'on en oublie l'absence d'alcool. Jasper John's a aussi adopté le rituel italien de l'aperitivo : entre 19 heures et 20 heures, chaque cocktail s'accompagne de tapas maison — olives marinées, focaccia tiède, antipasti du moment. C'est le genre d'endroit où l'on vient pour un verre et où l'on finit la soirée, bercé par une playlist savamment dosée et cette impression rare, à Tel Aviv, de ne plus être pressé par rien.
+        </p>
+
+        <img src="/images/placeholder.svg" alt="Intérieur du Jasper John's" />
+        <p class="text-caption text-center">Un bar à cocktails secret</p>
+      </div>
+    </Container>
+  </article>
+
+  <!-- Related Articles -->
+  <section class="related">
+    <Container>
+      <div class="related__grid">
+        <ArticleCard
+          title="Spéciale Saint-Valentin"
+          tags={['Événements']}
+          date="12 oct."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="Vinyl Therapy #4"
+          tags={['Musique']}
+          date="12 oct."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+        <ArticleCard
+          title="DJ Set au Coucher du Soleil"
+          tags={['Musique']}
+          date="12 oct."
+          image="/images/placeholder.svg"
+          link="/fr/magazine/hidden-gem"
+        />
+      </div>
+    </Container>
+  </section>
+</MagazineLayout>
+
+<style>
+  .article-header {
+    padding-top: 80px;
+  }
+
+  .article-header__image {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+  }
+
+  .article-body {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .article-meta {
+    margin-bottom: var(--space-lg);
+  }
+
+  .article-meta__date {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-warm-gray);
+  }
+
+  .article-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: 400;
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+  }
+
+  .article-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-charcoal-light);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .related {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .related__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .related__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

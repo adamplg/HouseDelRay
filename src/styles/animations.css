@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════
+   House of Delray — Animations
+   Intentionally slow & elegant for luxury feel
+   ═══════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes menuSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes menuFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Scroll-triggered Animation Classes ── */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-default),
+    transform var(--duration-slow) var(--ease-default);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger support — set --stagger-index via JS or inline style */
+.animate-on-scroll.stagger {
+  transition-delay: calc(var(--stagger-index, 0) * 50ms);
+}
+
+/* Variant: fade only (no vertical movement) */
+.animate-fade {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-default);
+}
+
+.animate-fade.is-visible {
+  opacity: 1;
+}
+
+/* Variant: scale in */
+.animate-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity var(--duration-slow) var(--ease-default),
+    transform var(--duration-slow) var(--ease-default);
+}
+
+.animate-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Image hover zoom ── */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform var(--duration-slow) var(--ease-default);
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll,
+  .animate-fade,
+  .animate-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .img-hover-zoom img {
+    transition: none;
+  }
+
+  .img-hover-zoom:hover img {
+    transform: none;
+  }
+}

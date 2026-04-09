@@ -1,0 +1,143 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import PageHero from '@/components/blocks/PageHero.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import ThumbnailGrid from '@/components/blocks/ThumbnailGrid.astro';
+import Accordion from '@/components/blocks/Accordion.astro';
+import ContactForm from '@/components/blocks/ContactForm.astro';
+---
+<PageLayout title="Privatisation" headerMode="transparent" locale="fr">
+  <PageHero title="Privatisez la Maison" height="tall" />
+
+  <!-- Description -->
+  <section class="buyout-desc">
+    <Container width="narrow">
+      <p class="buyout-desc__text text-center">
+        Que vous souhaitiez réserver une chambre pour la nuit, le restaurant
+        ou la maison entière rien que pour vous — notre adresse s'adapte à
+        toutes vos envies. Nous proposons des séjours sur mesure, avec ou
+        sans nos espaces événementiels, pour vous et vos proches. Écrivez-nous
+        pour recevoir une offre personnalisée.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Package Grid -->
+  <section class="buyout-packages">
+    <Container>
+      <ThumbnailGrid
+        items={[
+          {
+            title: "L'Essentiel",
+            subtitle: 'Les Bases Delray',
+            description: "Simplement beau, dans le style classique du Delray. Nos chambres les plus épurées comprennent le petit-déjeuner, le ménage quotidien et des produits de bain artisanaux, dans un écrin de caractère et de charme.",
+            ctaText: 'En Savoir Plus',
+            link: '#',
+          },
+          {
+            title: "L'Élevé",
+            subtitle: 'Delray+',
+            description: "Un chez-soi loin de chez soi, au-delà de l'ordinaire. Vivez comme un local avec accès au rooftop, notre guide Tel Aviv d'initié et des extras — art, culture et personnalité.",
+            ctaText: 'En Savoir Plus',
+            link: '#',
+          },
+          {
+            title: 'La Signature',
+            subtitle: 'Immersion Totale',
+            description: "La culture à fond. Ce séjour est une véritable immersion dans l'art, la photographie, l'innovation et les pépites underground de Tel Aviv — des moments exclusifs pensés sur mesure.",
+            ctaText: 'En Savoir Plus',
+            link: '#',
+          },
+          {
+            title: 'Le Grand Jeu',
+            subtitle: 'Sans Limites',
+            description: "L'immersion totale à Tel Aviv, à notre façon et toujours fait main. Le petit-déjeuner n'est que le début d'un accès illimité au cabinet de curiosités du Delray. Plus raffiné ici — un week-end inoubliable et la piscine en exclusivité.",
+            ctaText: 'En Savoir Plus',
+            link: '#',
+          },
+        ]}
+        columns={2}
+        locale="fr"
+      />
+    </Container>
+  </section>
+
+  <!-- What's Inside Accordions -->
+  <section class="buyout-details">
+    <Container>
+      <Accordion
+        items={[
+          { title: "Que comprend L'Essentiel ?", content: "8 chambres au design soigné, petit-déjeuner quotidien pour tous les convives, cocktails de bienvenue à l'arrivée, service de conciergerie dédié, accès à tous les espaces communs dont la cour intérieure et le salon du lobby." },
+          { title: "Que comprend L'Élevé ?", content: "Tout ce que comprend L'Essentiel, plus : accès au rooftop pour votre groupe, attentions de bienvenue personnalisées, guide du quartier, vélos en libre-service pour tous les convives, réservations prioritaires au restaurant." },
+          { title: "Que comprend La Signature ?", content: "Tout ce que comprend L'Élevé, plus : expérience art et culture de Tel Aviv sur mesure, dîner avec chef privé, atelier mixologie au Speakeasy, planning personnalisé et départ tardif." },
+          { title: "Que comprend Le Grand Jeu ?", content: "Tout ce que comprend La Signature, plus : usage exclusif de tous les espaces (restaurant, rooftop, speakeasy), équipe événementielle dédiée, menu créé sur mesure avec notre chef, photographe attitré, transferts aéroport." },
+        ]}
+        columns={1}
+      />
+    </Container>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="buyout-form">
+    <div class="buyout-form__bg">
+      <Container>
+        <div class="buyout-form__grid">
+          <div class="buyout-form__image">
+            <img src="/images/courtyard-evening.png" alt="Soirée privée dans la cour intérieure" loading="lazy" />
+          </div>
+          <div class="buyout-form__content">
+            <ContactForm title="Pas encore décidé(e) ? Laissez-nous vos coordonnées, nous vous recontactons" formName="buyout" locale="fr" />
+          </div>
+        </div>
+      </Container>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .buyout-desc {
+    padding: var(--section-padding-y) 0;
+  }
+
+  .buyout-desc__text {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  .buyout-packages {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .buyout-details {
+    padding: 0 0 var(--section-padding-y);
+  }
+
+  .buyout-form__bg {
+    background-color: var(--color-charcoal);
+    padding: var(--space-4xl) 0;
+  }
+
+  .buyout-form__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .buyout-form__grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .buyout-form__image img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+</style>
